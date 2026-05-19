@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Netuttu</title>
+<meta name="description" content="Fiş paylaş, gerçek fiyatları gör. Türkiye'nin fiyat şeffaflık platformu.">
+<meta name="theme-color" content="#1D4ED8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Netuttu">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#1D4ED8;--blue-light:#EFF6FF;--blue-mid:#BFDBFE;
+  --green:#059669;--green-bg:#D1FAE5;--orange:#EA580C;--orange-bg:#FFF7ED;
+  --purple:#7C3AED;--yellow:#F59E0B;--bg:#F1F5F9;--card:#FFFFFF;
+  --text:#0F172A;--sub:#64748B;--border:#E2E8F0;
+  --radius-lg:20px;--radius-md:14px;--radius-sm:10px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.05);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08);--shadow-lg:0 10px 40px rgba(0,0,0,.12);
+}
+.dark{--bg:#0F172A;--card:#1E293B;--text:#F1F5F9;--sub:#94A3B8;--border:#334155;--blue-light:#1E293B;--blue-mid:#1E3A5F;--green-bg:#064E3B;--orange-bg:#431407;--shadow-sm:0 1px 3px rgba(0,0,0,.3);--shadow-md:0 4px 16px rgba(0,0,0,.4);--shadow-lg:0 10px 40px rgba(0,0,0,.5);}
+.dark .login-bg{background:linear-gradient(160deg,#0F172A 0%,#1E293B 50%,#1E1B4B 100%);}
+.dark .form-input{background:#0F172A;border-color:#334155;color:#F1F5F9;}
+.dark .form-input::placeholder{color:#64748B;}
+.dark .social-btn{background:#0F172A;border-color:#334155;color:#F1F5F9;}
+.dark .toggle-btn{color:#94A3B8;}
+.dark .toggle-btn.active{background:#0F172A;color:#F1F5F9;}
+.dark .tab-toggle{background:rgba(15,23,42,.7);border-color:rgba(51,65,85,.8);}
+.dark .icon-btn{background:#1E293B;border-color:#334155;}
+.dark .slide-btn{background:rgba(255,255,255,.15);}
+.dark .cat-box{background:#1E293B;border-color:#334155;}
+.dark .feed-card{background:#1E293B;border-color:#334155;}
+.dark .feed-btn{background:#0F172A;border-color:#334155;color:#94A3B8;}
+.dark .feed-btn.primary{background:#1E3A5F;color:#60A5FA;border-color:#2563EB;}
+.dark .filter-pill{background:#1E293B;border-color:#334155;color:#94A3B8;}
+.dark .filter-pill.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.dark .swipe-card{background:#1E293B;border-color:#334155;}
+.dark .feed-tag{background:#0F172A;border-color:#334155;color:#94A3B8;}
+.dark .detail-card{background:#1E293B;border-color:#334155;}
+.dark .page-header{background:#1E293B;border-color:#334155;}
+.dark .detail-header{background:#1E293B;border-color:#334155;}
+.dark .tab-bar{background:#1E293B;border-color:#334155;}
+.dark .settings-header{background:#1E293B;border-color:#334155;}
+.dark .settings-card{background:#1E293B;border-color:#334155;}
+.dark .settings-row{border-color:#334155;}
+.dark .settings-row-icon{opacity:.85;}
+.dark .profile-menu-card{background:#1E293B;border-color:#334155;}
+.dark .profile-menu-item{border-color:#334155;}
+.dark .profile-logout{background:#1E293B;border-color:#7F1D1D;}
+.dark .help-search{background:#0F172A;border-color:#334155;color:#F1F5F9;}
+.dark .contact-card{background:#1E3A5F;}
+.dark .share-page-header{background:#1E293B;}
+.dark .receipt-preview{background:#0F172A;border-color:#334155;}
+.dark .biz-avatar{background:#0F172A;border-color:#334155;}
+.dark .comment-card{background:var(--bg);border-color:#334155;}
+.dark .price-badge{background:rgba(30,41,59,.9);}
+.dark .kvkk-checkbox{background:#0F172A;border-color:#334155;}
+.dark .logo-text{background:linear-gradient(90deg,#60A5FA,#93C5FD,#BFDBFE);-webkit-background-clip:text;background-clip:text;}
+.dark .logo-icon circle{fill:#1E293B;stroke:#60A5FA;}
+.dark .logo-icon line{stroke:#60A5FA;}
+.dark .logo-icon text{fill:#60A5FA;}
+.dark .btn-login-pill{box-shadow:0 2px 8px rgba(29,78,216,.5);}
+.dark .status-bar .icon-btn svg circle,.dark .status-bar .icon-btn svg line{stroke:#94A3B8;}
+.dark .saved-empty-icon{opacity:.6;}
+.dark .faq-item{border-color:#334155;}
+.dark .section-header .section-title{color:var(--text);}
+.dark .cat-label{color:var(--text);}
+.dark .cat-sub{color:var(--sub);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);margin:0;padding:0;overflow:hidden;-webkit-tap-highlight-color:transparent;}
+.device{width:100%;height:100%;max-width:430px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;}
+.screen{display:none;width:100%;height:100%;background:var(--bg);flex-direction:column;position:absolute;top:0;left:0;}
+.screen.active{display:flex;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.status-bar{padding:max(env(safe-area-inset-top),16px) 22px 10px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.logo{display:flex;align-items:center;gap:6px;cursor:pointer;text-decoration:none;}
+.logo svg.logo-icon{flex-shrink:0;}
+.logo-text{font-size:20px;font-weight:900;letter-spacing:-1px;background:linear-gradient(90deg,#1E40AF,#2563EB,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.status-right{display:flex;gap:10px;align-items:center;}
+.icon-btn{width:36px;height:36px;border-radius:12px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-sm);}
+.btn-login-pill{font-size:12px;font-weight:800;background:var(--blue);color:#fff;padding:7px 16px;border-radius:20px;cursor:pointer;border:none;box-shadow:0 2px 8px rgba(29,78,216,.3);font-family:inherit;}
+.tab-bar{display:flex;justify-content:space-around;align-items:flex-end;padding:10px 8px max(env(safe-area-inset-bottom),20px);background:var(--card);border-top:1px solid var(--border);flex-shrink:0;}
+.tab-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;min-width:58px;transition:opacity .15s;}
+.tab-item:active{opacity:.7;}
+.tab-item .tab-label{font-size:10px;font-weight:600;color:var(--sub);}
+.tab-item.active .tab-label{color:var(--blue);}
+.tab-plus{width:50px;height:50px;background:linear-gradient(135deg,var(--blue),#3B82F6);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:4px;box-shadow:0 4px 14px rgba(29,78,216,.35);}
+.scroll-body{flex:1;overflow-y:auto;overflow-x:hidden;}
+.scroll-body::-webkit-scrollbar{display:none;}
+
+/* LOGIN */
+.login-bg{flex:1;background:linear-gradient(160deg,#EFF6FF 0%,#DBEAFE 50%,#EDE9FE 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px 50px;position:relative;overflow:hidden;}
+.login-blob{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.08),transparent);top:-80px;right:-80px;pointer-events:none;}
+.login-blob2{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.07),transparent);bottom:-60px;left:-50px;pointer-events:none;}
+.login-logo-wrap{width:72px;height:72px;background:linear-gradient(135deg,var(--blue),#3B82F6);border-radius:22px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 8px 24px rgba(29,78,216,.3);}
+.login-logo-icon{font-size:32px;filter:brightness(100);}
+.login-title{font-size:28px;font-weight:900;color:var(--text);letter-spacing:-1px;margin-bottom:6px;}
+.login-sub{font-size:13px;color:var(--sub);text-align:center;line-height:1.6;margin-bottom:32px;max-width:240px;}
+.tab-toggle{display:flex;background:rgba(255,255,255,.7);border-radius:14px;padding:4px;margin-bottom:20px;width:100%;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.8);}
+.toggle-btn{flex:1;padding:11px;border-radius:11px;font-size:14px;font-weight:700;text-align:center;cursor:pointer;color:var(--sub);border:none;background:transparent;font-family:inherit;transition:all .2s;}
+.toggle-btn.active{background:#fff;color:var(--text);box-shadow:var(--shadow-sm);}
+.form-label{font-size:11px;font-weight:800;color:#475569;margin-bottom:6px;letter-spacing:.3px;text-transform:uppercase;width:100%;}
+.form-input{width:100%;padding:14px 16px;border-radius:var(--radius-md);border:1.5px solid var(--border);font-size:15px;background:#fff;color:var(--text);margin-bottom:14px;font-family:inherit;transition:border-color .2s;box-shadow:var(--shadow-sm);}
+.form-input::placeholder{color:#94A3B8;}
+.form-input:focus{outline:none;border-color:var(--blue);}
+.form-row{display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:18px;}
+.checkbox-row{display:flex;align-items:center;gap:8px;}
+.checkbox{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border);background:#fff;cursor:pointer;}
+.checkbox-label{font-size:12px;color:var(--sub);}
+.forgot-link{font-size:12px;color:var(--blue);font-weight:700;cursor:pointer;}
+.cta-btn{width:100%;padding:16px;border-radius:var(--radius-md);background:linear-gradient(135deg,var(--blue),#3B82F6);color:#fff;font-size:15px;font-weight:800;border:none;cursor:pointer;margin-bottom:20px;font-family:inherit;box-shadow:0 4px 16px rgba(29,78,216,.3);transition:transform .15s,box-shadow .15s;}
+.cta-btn:active{transform:scale(.98);box-shadow:none;}
+.divider-row{display:flex;align-items:center;gap:10px;width:100%;margin-bottom:16px;}
+.divider-line{flex:1;height:1px;background:var(--border);}
+.divider-text{font-size:11px;color:#CBD5E1;font-weight:600;}
+.social-btns{display:flex;gap:10px;width:100%;}
+.social-btn{flex:1;padding:13px;border-radius:var(--radius-md);border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:var(--shadow-sm);font-family:inherit;transition:transform .1s;}
+.social-btn:active{transform:scale(.97);}
+.social-btn svg{flex-shrink:0;}
+
+/* HOME */
+.hero-slider{height:230px;position:relative;overflow:hidden;flex-shrink:0;margin:0 16px 2px;border-radius:22px;}
+.slides-track{display:flex;width:300%;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);}
+.slide{width:33.333%;height:100%;position:relative;flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 18px 16px;border-radius:22px;overflow:hidden;}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.1) 55%,transparent 100%);z-index:1;}
+.slide-content{position:relative;z-index:2;}
+.slide-badge{display:inline-flex;align-items:center;gap:4px;color:#fff;font-size:10px;font-weight:800;padding:4px 11px;border-radius:20px;margin-bottom:7px;backdrop-filter:blur(8px);}
+.slide-badge.blue{background:rgba(29,78,216,.8);}
+.slide-badge.orange{background:rgba(234,88,12,.8);}
+.slide-badge.purple{background:rgba(124,58,237,.8);}
+.slide-title{font-size:19px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:8px;letter-spacing:-.3px;}
+.slide-meta{display:flex;align-items:center;gap:8px;}
+.slide-price{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:13px;font-weight:800;padding:4px 12px;border-radius:20px;backdrop-filter:blur(4px);}
+.slide-stars{color:#FCD34D;font-size:13px;font-weight:700;}
+.slide-comments{color:rgba(255,255,255,.7);font-size:11px;}
+.slide-btn{position:absolute;bottom:18px;right:18px;color:#fff;font-size:11px;font-weight:800;padding:8px 14px;border-radius:20px;cursor:pointer;z-index:2;border:none;backdrop-filter:blur(8px);background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);font-family:inherit;}
+.slide-caffe{background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80');background-size:cover;background-position:center;}
+.slide-bk{background-image:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80');background-size:cover;background-position:center;}
+.slide-nusret{background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80');background-size:cover;background-position:center;}
+.slider-dots{position:absolute;bottom:14px;left:18px;display:flex;gap:5px;z-index:5;}
+.dot{height:4px;border-radius:2px;background:rgba(255,255,255,.4);transition:all .3s;}
+.dot.active{background:#fff;width:20px;}
+.dot:not(.active){width:4px;}
+.section-header{padding:18px 18px 10px;display:flex;justify-content:space-between;align-items:center;}
+.section-title{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.2px;}
+.section-all{font-size:12px;color:var(--blue);font-weight:700;cursor:pointer;}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 16px 16px;}
+.cat-box{background:var(--card);border-radius:var(--radius-md);padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:transform .15s,box-shadow .15s;}
+.cat-box:active{transform:scale(.96);box-shadow:none;}
+.cat-icon-wrap{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.cat-icon-wrap.rest{background:#FEF3C7;}.cat-icon-wrap.mkt{background:#D1FAE5;}.cat-icon-wrap.shop{background:#DBEAFE;}.cat-icon-wrap.el{background:#EDE9FE;}.cat-icon-wrap.hiz{background:#FCE7F3;}.cat-icon-wrap.etk{background:#FEE2E2;}
+.cat-label{font-size:12px;font-weight:700;color:var(--text);}
+.cat-sub{font-size:10px;color:var(--sub);font-weight:500;}
+
+/* SWIPE */
+.swipe-container{position:relative;width:calc(100% - 32px);margin:0 16px;height:260px;perspective:800px;}
+.swipe-card{position:absolute;width:100%;border-radius:var(--radius-lg);background:var(--card);box-shadow:var(--shadow-md);border:1px solid var(--border);overflow:hidden;cursor:grab;transition:transform .3s ease,opacity .3s ease;user-select:none;touch-action:none;}
+.swipe-card:active{cursor:grabbing;}
+.swipe-card .feed-img{width:100%;height:120px;display:flex;align-items:center;justify-content:center;font-size:50px;position:relative;}
+.swipe-card .feed-body{padding:12px 16px 14px;}
+.swipe-card .feed-name{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.2px;}
+.swipe-card .feed-loc{font-size:12px;color:var(--sub);margin-top:3px;}
+.swipe-card .feed-stars{display:flex;align-items:center;gap:6px;margin-top:6px;}
+.star-val{color:var(--yellow);font-size:12px;font-weight:700;}
+.star-count{font-size:11px;color:var(--sub);}
+.swipe-card .feed-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.feed-tag{background:var(--bg);border-radius:7px;padding:3px 9px;font-size:10px;font-weight:700;color:#475569;border:1px solid var(--border);}
+.price-badge{position:absolute;top:10px;right:10px;background:rgba(15,23,42,.85);color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:20px;backdrop-filter:blur(4px);}
+.swipe-overlay{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;letter-spacing:1px;border-radius:var(--radius-lg);opacity:0;transition:opacity .15s;pointer-events:none;z-index:10;}
+.swipe-overlay.save{background:rgba(5,150,105,.15);border:3px solid var(--green);color:var(--green);}
+.swipe-overlay.dismiss{background:rgba(234,88,12,.12);border:3px solid var(--orange);color:var(--orange);}
+.swipe-hint{display:flex;justify-content:center;gap:32px;padding:8px 16px 4px;font-size:11px;font-weight:600;color:var(--sub);}
+.swipe-hint span{display:flex;align-items:center;gap:4px;}
+
+/* FEED */
+.feed-card{background:var(--card);border-radius:var(--radius-lg);margin:0 16px 12px;overflow:hidden;cursor:pointer;box-shadow:var(--shadow-sm);border:1px solid var(--border);transition:transform .15s;}
+.feed-card:active{transform:scale(.99);}
+.feed-card .feed-img{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:50px;position:relative;}
+.feed-img.rest-bg{background:linear-gradient(135deg,#FEF3C7,#FDE68A);}
+.feed-img.mkt-bg{background:linear-gradient(135deg,#D1FAE5,#A7F3D0);}
+.feed-img.shop-bg{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);}
+.feed-img.bk-bg{background:linear-gradient(135deg,#FEE2E2,#FECACA);}
+.feed-img.el-bg{background:linear-gradient(135deg,#EDE9FE,#DDD6FE);}
+.feed-img.hiz-bg{background:linear-gradient(135deg,#FCE7F3,#FBCFE8);}
+.feed-img.etk-bg{background:linear-gradient(135deg,#FEE2E2,#FCA5A5);}
+.feed-body{padding:14px 16px 16px;}
+.feed-name{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.2px;}
+.feed-loc{font-size:12px;color:var(--sub);margin-top:3px;}
+.feed-stars{display:flex;align-items:center;gap:6px;margin-top:6px;}
+.feed-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap;}
+.feed-actions{display:flex;gap:6px;margin-top:12px;}
+.feed-btn{flex:1;padding:9px 4px;border-radius:var(--radius-sm);font-size:11px;font-weight:700;border:1px solid var(--border);background:var(--bg);color:#475569;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;font-family:inherit;}
+.feed-btn.primary{background:var(--blue-light);color:var(--blue);border-color:var(--blue-mid);flex:1.4;}
+
+/* CATEGORY */
+.page-header{background:var(--card);padding:52px 18px 14px;flex-shrink:0;border-bottom:1px solid var(--border);}
+.page-header-row{display:flex;align-items:center;gap:14px;margin-bottom:6px;margin-top:8px;}
+.page-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:var(--shadow-sm);}
+.page-title{font-size:22px;font-weight:900;color:var(--text);letter-spacing:-.5px;}
+.page-subtitle{font-size:12px;color:var(--sub);margin-top:2px;}
+.page-count{font-size:12px;color:var(--blue);font-weight:700;margin-top:2px;}
+.filter-scroll{display:flex;gap:7px;padding:12px 16px;overflow-x:auto;background:var(--card);}
+.filter-scroll::-webkit-scrollbar{display:none;}
+.filter-pill{padding:8px 16px;border-radius:20px;border:1.5px solid var(--border);font-size:12px;font-weight:700;background:var(--card);color:var(--sub);white-space:nowrap;cursor:pointer;font-family:inherit;transition:all .2s;}
+.filter-pill.active{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 2px 8px rgba(29,78,216,.25);}
+.back-row{display:flex;align-items:center;gap:8px;padding:0 0 4px;cursor:pointer;}
+.back-row svg{flex-shrink:0;}
+.back-row span{font-size:13px;color:var(--blue);font-weight:700;}
+
+/* DETAIL */
+.detail-header{background:var(--card);padding:52px 18px 16px;flex-shrink:0;border-bottom:1px solid var(--border);}
+.back-link{font-size:13px;color:var(--blue);font-weight:700;display:flex;align-items:center;gap:4px;margin-bottom:14px;cursor:pointer;}
+.biz-row{display:flex;align-items:center;gap:14px;}
+.biz-avatar{width:52px;height:52px;border-radius:16px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:26px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.biz-info-name{font-size:18px;font-weight:900;color:var(--text);letter-spacing:-.3px;}
+.verified-badge{display:inline-flex;align-items:center;gap:3px;background:var(--green-bg);color:var(--green);font-size:10px;font-weight:800;padding:3px 9px;border-radius:8px;}
+.biz-location{font-size:12px;color:var(--sub);margin-top:3px;}
+.detail-card{background:var(--card);margin:14px 16px 0;border-radius:var(--radius-lg);padding:16px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.detail-card-title{font-size:13px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+.receipt-card{background:var(--card);margin:0 16px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.receipt-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--blue-light);}
+.receipt-title{font-size:13px;font-weight:800;color:var(--blue);}
+.receipt-total{font-size:18px;font-weight:900;color:var(--blue);}
+.receipt-row{padding:10px 16px;border-bottom:1px solid var(--bg);display:flex;justify-content:space-between;align-items:center;}
+.receipt-row:last-child{border-bottom:none;}
+.receipt-item-name{font-size:13px;color:var(--text);font-weight:500;}
+.receipt-item-qty{font-size:11px;color:var(--sub);margin-top:2px;}
+.receipt-item-price{font-size:14px;font-weight:800;color:var(--text);}
+.action-row{display:flex;gap:8px;padding:14px 16px 0;}
+.action-btn{flex:1;padding:11px 4px;border-radius:var(--radius-md);font-size:11px;font-weight:700;border:1px solid var(--border);background:var(--card);color:#475569;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;box-shadow:var(--shadow-sm);font-family:inherit;}
+.map-card{background:var(--card);margin:14px 16px 0;border-radius:var(--radius-lg);padding:16px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.map-preview{height:90px;border-radius:var(--radius-md);background:linear-gradient(160deg,#dcfce7,#bbf7d0);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:12px;position:relative;overflow:hidden;}
+.map-grid-lines{position:absolute;inset:0;opacity:.15;background-image:linear-gradient(rgba(0,0,0,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.2) 1px,transparent 1px);background-size:22px 22px;}
+.nav-app-row{display:flex;gap:8px;}
+.nav-app-btn{flex:1;padding:10px 6px;border-radius:var(--radius-sm);border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text);display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;background:var(--bg);font-family:inherit;}
+.comment-block{background:var(--card);margin:14px 16px 0;border-radius:var(--radius-lg);padding:16px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.comment-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.comment-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;}
+.comment-name{font-size:13px;font-weight:800;color:var(--text);}
+.comment-date{font-size:10px;color:var(--sub);margin-top:1px;}
+.comment-text{font-size:13px;color:#334155;line-height:1.6;margin-bottom:10px;}
+.comment-actions{display:flex;gap:14px;font-size:12px;color:var(--sub);}
+.comment-input-card{background:var(--card);margin:14px 16px;border-radius:var(--radius-lg);padding:16px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.comment-input-area{border:1.5px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;font-size:13px;color:#94A3B8;background:var(--bg);width:100%;min-height:66px;font-family:inherit;}
+.comment-submit{width:100%;padding:12px;border-radius:var(--radius-md);background:var(--blue-light);color:var(--blue);font-size:13px;font-weight:800;margin-top:10px;cursor:pointer;border:1px solid var(--blue-mid);font-family:inherit;}
+.receipt-hero-box{background:var(--card);border:2px solid var(--blue-mid);border-radius:var(--radius-md);margin:0 16px;padding:14px;display:flex;gap:14px;box-shadow:0 2px 8px rgba(29,78,216,.08);}
+.receipt-thumb{width:64px;height:76px;background:var(--bg);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;position:relative;border:1px solid var(--border);}
+.receipt-thumb-badge{position:absolute;top:-7px;right:-7px;background:var(--green-bg);color:var(--green);font-size:9px;font-weight:800;padding:3px 7px;border-radius:7px;border:1px solid rgba(5,150,105,.2);}
+
+/* SHARE */
+.share-page-header{background:var(--card);padding:52px 18px 18px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.share-page-title{font-size:24px;font-weight:900;color:var(--text);letter-spacing:-.5px;margin-top:4px;}
+.share-page-sub{font-size:13px;color:var(--sub);margin-top:5px;line-height:1.5;}
+.share-form-card{background:var(--card);border-radius:var(--radius-lg);margin:14px 16px 0;padding:18px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.form-card-title{font-size:15px;font-weight:900;color:var(--text);margin-bottom:4px;letter-spacing:-.2px;}
+.form-card-sub{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:16px;}
+.upload-area{border:2px dashed var(--blue-mid);border-radius:var(--radius-md);height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--blue-light);cursor:pointer;transition:background .2s;}
+.upload-area:hover{background:#dbeafe;}
+.upload-icon{font-size:28px;}
+.upload-main{font-size:13px;color:#475569;font-weight:600;}
+.upload-sub{font-size:10px;color:#94A3B8;}
+.upload-cta{font-size:12px;color:var(--blue);font-weight:800;}
+.field-label{font-size:10px;font-weight:800;color:#64748B;margin-top:16px;margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase;}
+.field-select{width:100%;padding:12px 14px;border-radius:var(--radius-md);border:1.5px solid var(--border);font-size:13px;color:#94A3B8;background:var(--bg);display:flex;justify-content:space-between;align-items:center;}
+.chip-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;}
+.cat-chip{padding:7px 13px;border-radius:20px;border:1.5px solid var(--border);font-size:11px;font-weight:700;background:var(--bg);color:var(--sub);cursor:pointer;transition:all .2s;}
+.cat-chip.active{background:var(--blue-light);color:var(--blue);border-color:var(--blue-mid);}
+.field-input{width:100%;padding:12px 14px;border-radius:var(--radius-md);border:1.5px solid var(--border);font-size:13px;background:var(--bg);color:var(--text);font-family:inherit;}
+.field-input::placeholder{color:#94A3B8;}
+.kvkk-row{display:flex;align-items:flex-start;gap:10px;margin-top:16px;}
+.kvkk-checkbox{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);background:#fff;flex-shrink:0;margin-top:1px;cursor:pointer;}
+.kvkk-text{font-size:11px;color:var(--sub);line-height:1.6;}
+.kvkk-link{color:var(--blue);font-weight:700;}
+.submit-cta{width:100%;padding:16px;border-radius:var(--radius-md);background:linear-gradient(135deg,var(--blue),#3B82F6);color:#fff;font-size:15px;font-weight:900;text-align:center;margin-top:18px;cursor:pointer;border:none;font-family:inherit;opacity:.5;box-shadow:0 4px 16px rgba(29,78,216,.25);}
+.verify-center{display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0;}
+.verify-icon{font-size:36px;}
+.verify-desc{font-size:12px;color:var(--sub);text-align:center;line-height:1.6;}
+.verify-btn{background:linear-gradient(135deg,var(--blue),#3B82F6);color:#fff;font-size:12px;font-weight:800;padding:10px 22px;border-radius:20px;cursor:pointer;border:none;font-family:inherit;box-shadow:0 4px 12px rgba(29,78,216,.25);}
+
+/* PROFILE */
+.profile-header-bg{background:linear-gradient(135deg,var(--blue),#3B82F6);padding:52px 18px 28px;flex-shrink:0;position:relative;}
+.profile-avatar{width:72px;height:72px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:var(--blue);border:3px solid rgba(255,255,255,.4);box-shadow:0 4px 16px rgba(0,0,0,.15);margin:0 auto 10px;}
+.profile-name{font-size:20px;font-weight:900;color:#fff;text-align:center;letter-spacing:-.3px;}
+.profile-handle{font-size:12px;color:rgba(255,255,255,.7);text-align:center;margin-top:3px;font-weight:500;}
+.profile-stats{display:flex;gap:0;margin:16px -18px 0;border-top:1px solid rgba(255,255,255,.15);}
+.profile-stat{flex:1;padding:12px 4px;text-align:center;border-right:1px solid rgba(255,255,255,.15);}
+.profile-stat:last-child{border-right:none;}
+.profile-stat-val{font-size:18px;font-weight:900;color:#fff;}
+.profile-stat-label{font-size:10px;color:rgba(255,255,255,.7);font-weight:600;margin-top:2px;}
+.profile-menu-card{background:var(--card);border-radius:var(--radius-lg);margin:14px 16px 0;border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;}
+.profile-menu-item{padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.profile-menu-item:last-child{border-bottom:none;}
+.profile-menu-item:active{background:var(--bg);}
+.profile-menu-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.profile-menu-text{flex:1;}
+.profile-menu-title{font-size:13px;font-weight:700;color:var(--text);}
+.profile-menu-sub{font-size:11px;color:var(--sub);margin-top:1px;}
+.profile-menu-arrow{color:var(--sub);font-size:14px;}
+.profile-logout{background:var(--card);border-radius:var(--radius-lg);margin:14px 16px;border:1px solid #FCA5A5;box-shadow:var(--shadow-sm);padding:14px 16px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:13px;font-weight:800;color:#DC2626;}
+
+/* SAVED */
+.saved-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px;text-align:center;}
+.saved-empty-icon{font-size:48px;margin-bottom:12px;}
+.saved-empty-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px;}
+.saved-empty-sub{font-size:13px;color:var(--sub);line-height:1.6;}
+
+/* SETTINGS PAGES */
+.settings-header{background:var(--card);padding:52px 18px 16px;flex-shrink:0;border-bottom:1px solid var(--border);}
+.settings-back{display:flex;align-items:center;gap:6px;cursor:pointer;margin-bottom:12px;}
+.settings-back svg{flex-shrink:0;}
+.settings-back span{font-size:13px;color:var(--blue);font-weight:700;}
+.settings-title{font-size:22px;font-weight:900;color:var(--text);letter-spacing:-.5px;}
+.settings-subtitle{font-size:12px;color:var(--sub);margin-top:2px;}
+.settings-section{padding:18px 16px 6px;}
+.settings-section-title{font-size:11px;font-weight:800;color:var(--sub);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;}
+.settings-card{background:var(--card);border-radius:var(--radius-lg);margin:0 16px 12px;border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;}
+.settings-row{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.settings-row:last-child{border-bottom:none;}
+.settings-row:active{background:var(--bg);}
+.settings-row-left{display:flex;align-items:center;gap:12px;}
+.settings-row-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.settings-row-text{font-size:13px;font-weight:600;color:var(--text);}
+.settings-row-sub{font-size:11px;color:var(--sub);margin-top:1px;}
+.settings-row-right{display:flex;align-items:center;gap:6px;}
+.settings-row-val{font-size:12px;color:var(--sub);font-weight:500;}
+.settings-row-arrow{color:#CBD5E1;font-size:14px;}
+.toggle-switch{width:44px;height:26px;border-radius:13px;background:#CBD5E1;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;}
+.toggle-switch.on{background:var(--blue);}
+.toggle-switch::after{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:2px;left:2px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.toggle-switch.on::after{transform:translateX(18px);}
+.help-search{margin:16px;padding:12px 16px;border-radius:var(--radius-md);border:1.5px solid var(--border);font-size:14px;background:var(--card);color:var(--text);font-family:inherit;width:calc(100% - 32px);box-shadow:var(--shadow-sm);}
+.help-search::placeholder{color:#94A3B8;}
+.faq-item{padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;}
+.faq-q-text{font-size:13px;font-weight:700;color:var(--text);flex:1;}
+.faq-arrow{color:var(--sub);font-size:14px;transition:transform .2s;}
+.faq-arrow.open{transform:rotate(90deg);}
+.faq-a{font-size:12px;color:var(--sub);line-height:1.6;padding-top:8px;display:none;}
+.faq-a.show{display:block;}
+.contact-card{background:var(--blue-light);border-radius:var(--radius-md);margin:16px;padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.contact-card-icon{width:40px;height:40px;border-radius:12px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.contact-card-text{flex:1;}
+.contact-card-title{font-size:13px;font-weight:700;color:var(--text);}
+.contact-card-sub{font-size:11px;color:var(--sub);margin-top:2px;}
+
+/* TOAST */
+.toast{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);background:#0F172A;color:#fff;font-size:13px;font-weight:700;padding:10px 20px;border-radius:20px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:100;white-space:nowrap;}
+.toast.show{opacity:1;}
+
+/* LOCATION BAR */
+.location-bar{display:flex;align-items:center;gap:6px;padding:6px 22px 8px;cursor:pointer;background:var(--bg);}
+.location-bar span{font-size:13px;font-weight:700;color:var(--text);flex:1;}
+.dark .location-bar{background:var(--bg);}
+
+/* LOCATION PICKER PAGE */
+.loc-picker-header{background:var(--card);padding:52px 16px 12px;flex-shrink:0;border-bottom:1px solid var(--border);}
+.loc-picker-back{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--blue);cursor:pointer;margin-bottom:8px;}
+.loc-picker-title{font-size:20px;font-weight:800;color:var(--text);}
+.loc-picker-subtitle{font-size:12px;color:var(--sub);margin-top:2px;}
+.loc-section{padding:14px 16px 6px;}
+.loc-section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--sub);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.loc-section-title svg{flex-shrink:0;}
+.loc-option{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--card);border-radius:12px;margin-bottom:8px;cursor:pointer;border:2px solid transparent;transition:all .2s;}
+.loc-option:hover,.loc-option:active{border-color:var(--blue);background:rgba(29,78,216,.04);}
+.loc-option.selected{border-color:var(--blue);background:rgba(29,78,216,.06);}
+.loc-option-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.loc-option-icon.region{background:#DBEAFE;color:#1D4ED8;}
+.loc-option-icon.city{background:#FEE2E2;color:#DC2626;}
+.loc-option-icon.district{background:#D1FAE5;color:#059669;}
+.loc-option-icon.hood{background:#FEF3C7;color:#D97706;}
+.loc-option-info{flex:1;min-width:0;}
+.loc-option-name{font-size:14px;font-weight:700;color:var(--text);}
+.loc-option-desc{font-size:11px;color:var(--sub);margin-top:1px;}
+.loc-option-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.loc-option.selected .loc-option-check{border-color:var(--blue);background:var(--blue);}
+.loc-confirm-bar{padding:12px 16px;background:var(--card);border-top:1px solid var(--border);flex-shrink:0;}
+.loc-confirm-btn{width:100%;padding:14px;border-radius:12px;background:var(--blue);color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
+.dark .loc-option{background:var(--card);}
+.dark .loc-option:hover,.dark .loc-option:active{background:rgba(37,99,235,.1);}
+.dark .loc-option.selected{background:rgba(37,99,235,.15);}
+.dark .loc-option-icon.region{background:rgba(37,99,235,.2);}
+.dark .loc-option-icon.city{background:rgba(220,38,38,.2);}
+.dark .loc-option-icon.district{background:rgba(5,150,105,.2);}
+.dark .loc-option-icon.hood{background:rgba(217,119,6,.2);}
+.dark .loc-confirm-bar{background:var(--card);}
+.loc-breadcrumb{display:flex;align-items:center;gap:4px;margin-top:10px;flex-wrap:wrap;}
+.loc-crumb{font-size:11px;font-weight:600;color:var(--blue);cursor:pointer;padding:3px 8px;background:rgba(29,78,216,.08);border-radius:6px;white-space:nowrap;}
+.loc-crumb:last-child{color:var(--text);background:rgba(29,78,216,.15);cursor:default;}
+.loc-crumb-arrow{font-size:10px;color:var(--sub);}
+.loc-step-bar{display:flex;align-items:center;gap:0;padding:12px 16px 4px;background:var(--bg);}
+.loc-step{flex:1;height:3px;border-radius:2px;background:var(--border);transition:background .3s;}
+.loc-step.active{background:var(--blue);}
+.loc-step.done{background:var(--green);}
+.loc-step+.loc-step{margin-left:4px;}
+.loc-step-labels{display:flex;align-items:center;padding:0 16px 8px;background:var(--bg);}
+.loc-step-label{flex:1;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);text-align:center;transition:color .3s;}
+.loc-step-label.active{color:var(--blue);}
+.loc-step-label.done{color:var(--green);}
+.dark .loc-crumb{background:rgba(37,99,235,.15);}
+.dark .loc-crumb:last-child{background:rgba(37,99,235,.25);}
+
+/* SEARCH */
+.search-header{background:var(--card);padding:52px 16px 12px;flex-shrink:0;border-bottom:1px solid var(--border);}
+.search-bar-row{display:flex;align-items:center;gap:10px;}
+.search-back{cursor:pointer;flex-shrink:0;}
+.search-input{flex:1;padding:10px 14px;border-radius:var(--radius-md);border:1.5px solid var(--border);font-size:14px;background:var(--bg);color:var(--text);font-family:inherit;}
+.search-input::placeholder{color:#94A3B8;}
+.search-input:focus{outline:none;border-color:var(--blue);}
+.search-clear{cursor:pointer;color:var(--sub);font-size:16px;padding:4px;}
+.search-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px;}
+.search-chip{padding:8px 14px;border-radius:20px;background:var(--card);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);cursor:pointer;box-shadow:var(--shadow-sm);}
+.search-chip:active{background:var(--blue-light);}
+.search-result-item{padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);cursor:pointer;background:var(--card);margin:0 16px;border-radius:var(--radius-md);margin-bottom:8px;box-shadow:var(--shadow-sm);}
+.search-result-item:active{opacity:.8;}
+.search-result-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.search-result-info{flex:1;}
+.search-result-name{font-size:13px;font-weight:700;color:var(--text);}
+.search-result-detail{font-size:11px;color:var(--sub);margin-top:2px;}
+.search-result-price{font-size:15px;font-weight:900;color:var(--blue);text-align:right;}
+.search-result-store{font-size:10px;color:var(--sub);text-align:right;margin-top:2px;}
+.search-no-result{padding:40px;text-align:center;color:var(--sub);font-size:13px;}
+.dark .search-input{background:#0F172A;border-color:#334155;color:#F1F5F9;}
+.dark .search-chip{background:#1E293B;border-color:#334155;color:#F1F5F9;}
+.dark .search-result-item{background:#1E293B;border-color:#334155;}
+</style>
+</head>
+<body>
+<div class="device" id="app">
+<div class="toast" id="toast"></div>
+
+<!-- ===== LOGIN ===== -->
+<div class="screen active" id="s-login">
+  <div class="status-bar" style="background:var(--card);">
+    <div class="logo" onclick="goTo('s-home')"><svg class="logo-icon" viewBox="0 0 30 30" width="26" height="26" fill="none"><circle cx="12" cy="12" r="9" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/><line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/><text x="12" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="900" fill="#1D4ED8">₺</text></svg><span class="logo-text">netuttu</span></div>
+  </div>
+  <div class="login-bg">
+    <div class="login-blob"></div><div class="login-blob2"></div>
+    <div class="login-logo-wrap"><svg viewBox="0 0 36 36" width="36" height="36" fill="none"><circle cx="14" cy="14" r="10" fill="rgba(255,255,255,.2)" stroke="#fff" stroke-width="2.5"/><line x1="21.5" y1="21.5" x2="30" y2="30" stroke="#fff" stroke-width="3" stroke-linecap="round"/><text x="14" y="18" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="900" fill="#fff">₺</text></svg></div>
+    <div class="login-title" style="background:linear-gradient(90deg,#1E40AF,#2563EB,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">netuttu</div>
+    <div class="login-sub">Alışverişlerinizi paylaşın,<br>fiyatları birlikte takip edin.</div>
+    <div class="tab-toggle">
+      <button class="toggle-btn active" id="btn-giris" onclick="toggleLoginTab('giris')">Giriş Yap</button>
+      <button class="toggle-btn" id="btn-kayit" onclick="toggleLoginTab('kayit')">Kayıt Ol</button>
+    </div>
+    <div id="form-giris" style="width:100%;">
+      <div class="form-label">E-posta</div>
+      <input class="form-input" placeholder="ornek@mail.com" type="email">
+      <div class="form-label">Şifre</div>
+      <div style="position:relative;"><input class="form-input" placeholder="••••••••" type="password" style="padding-right:44px;"><span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:16px;cursor:pointer;">👁</span></div>
+      <div class="form-row"><div class="checkbox-row"><div class="checkbox"></div><span class="checkbox-label">Beni hatırla</span></div><span class="forgot-link">Şifremi unuttum</span></div>
+      <button class="cta-btn" onclick="goTo('s-home')">Giriş Yap →</button>
+      <div class="divider-row"><div class="divider-line"></div><span class="divider-text">veya</span><div class="divider-line"></div></div>
+      <div class="social-btns">
+        <div class="social-btn" onclick="goTo('s-home')"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 010-9.18l-7.98-6.19a24.04 24.04 0 000 21.56l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Google</div>
+        <div class="social-btn" onclick="goTo('s-home')"><svg width="18" height="18" viewBox="0 0 384 512"><path fill="#000" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184 4 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>Apple</div>
+      </div>
+    </div>
+    <div id="form-kayit" style="width:100%;display:none;">
+      <div class="form-label">Ad Soyad</div><input class="form-input" placeholder="Adınız ve soyadınız">
+      <div class="form-label">E-posta</div><input class="form-input" placeholder="ornek@mail.com" type="email">
+      <div class="form-label">Şifre</div><input class="form-input" placeholder="Min. 8 karakter" type="password">
+      <button class="cta-btn" onclick="goTo('s-home')" style="margin-top:10px;">Kayıt Ol →</button>
+      <div class="divider-row"><div class="divider-line"></div><span class="divider-text">veya</span><div class="divider-line"></div></div>
+      <div class="social-btns">
+        <div class="social-btn" onclick="goTo('s-home')"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59a14.5 14.5 0 010-9.18l-7.98-6.19a24.04 24.04 0 000 21.56l7.98-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Google</div>
+        <div class="social-btn" onclick="goTo('s-home')"><svg width="18" height="18" viewBox="0 0 384 512"><path fill="#000" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184 4 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>Apple</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HOME ===== -->
+<div class="screen" id="s-home">
+  <div class="status-bar" style="background:var(--bg);"><div class="logo" onclick="goTo('s-home')"><svg class="logo-icon" viewBox="0 0 30 30" width="26" height="26" fill="none"><circle cx="12" cy="12" r="9" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/><line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/><text x="12" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="900" fill="#1D4ED8">₺</text></svg><span class="logo-text">netuttu</span></div><div class="status-right"><div class="icon-btn" onclick="goTo('s-search')"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><circle cx="9" cy="9" r="5.5" stroke="#475569" stroke-width="1.8"/><line x1="13" y1="13" x2="17" y2="17" stroke="#475569" stroke-width="1.8" stroke-linecap="round"/></svg></div><button class="btn-login-pill" onclick="goTo('s-login')">Giriş</button></div></div>
+  <div class="location-bar">
+    <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2C6.7 2 4 4.7 4 8c0 4.5 6 10 6 10s6-5.5 6-10c0-3.3-2.7-6-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" fill="#1D4ED8"/></svg>
+    <span id="current-location" style="cursor:pointer;" onclick="goTo('s-location')">Kadıköy, İstanbul</span>
+    <div onclick="goTo('s-location')" style="cursor:pointer;padding:4px;display:flex;align-items:center;"><svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="M6 8l4 4 4-4" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+  <div class="scroll-body">
+    <div class="hero-slider"><div class="slides-track" id="slides-track">
+      <div class="slide slide-caffe"><div class="slide-overlay"></div><div class="slide-content"><div class="slide-badge blue">⭐ Haftanın Netuttusu</div><div class="slide-title">Cafe Nero – Kahvaltı Menüsü</div><div class="slide-meta"><span class="slide-price">₺520</span><span class="slide-stars">★ 4.8</span><span class="slide-comments">💬 32</span></div></div><div class="slider-dots"><div class="dot active" id="dot-0"></div><div class="dot" id="dot-1"></div><div class="dot" id="dot-2"></div></div><button class="slide-btn" onclick="openDetail('cafe_nero')">Detayları Gör →</button></div>
+      <div class="slide slide-bk"><div class="slide-overlay"></div><div class="slide-content"><div class="slide-badge orange">🏆 Fiyat/Performans</div><div class="slide-title">Burger King – Whopper Menü</div><div class="slide-meta"><span class="slide-price">₺380</span><span class="slide-stars">★ 4.5</span><span class="slide-comments">💬 24</span></div></div><button class="slide-btn" onclick="openDetail('burger_king')">Detayları Gör →</button></div>
+      <div class="slide slide-nusret"><div class="slide-overlay"></div><div class="slide-content"><div class="slide-badge purple">🔥 Haftanın Şaşırtanı</div><div class="slide-title">Nusret – Özel Menü</div><div class="slide-meta"><span class="slide-price">₺8.500</span><span class="slide-stars">★ 3.9</span><span class="slide-comments">💬 18</span></div></div><button class="slide-btn" style="background:rgba(124,58,237,.6);" onclick="openDetail('nusret')">Detayları Gör →</button></div>
+    </div></div>
+    <div class="section-header"><span class="section-title">Kategoriye Göre Keşfet</span></div>
+    <div class="cat-grid">
+      <div class="cat-box" onclick="openCategory('rest')"><div class="cat-icon-wrap rest">🍽</div><div class="cat-label">Restoran</div><div class="cat-sub">Tümünü Gör</div></div>
+      <div class="cat-box" onclick="openCategory('mkt')"><div class="cat-icon-wrap mkt">🛒</div><div class="cat-label">Market</div><div class="cat-sub">Tümünü Gör</div></div>
+      <div class="cat-box" onclick="openCategory('shop')"><div class="cat-icon-wrap shop">🏪</div><div class="cat-label">Mağaza</div><div class="cat-sub">Tümünü Gör</div></div>
+      <div class="cat-box" onclick="openCategory('el')"><div class="cat-icon-wrap el">📱</div><div class="cat-label">Elektronik</div><div class="cat-sub">Tümünü Gör</div></div>
+      <div class="cat-box" onclick="openCategory('hiz')"><div class="cat-icon-wrap hiz">🔧</div><div class="cat-label">Hizmet</div><div class="cat-sub">Tümünü Gör</div></div>
+      <div class="cat-box" onclick="openCategory('etk')"><div class="cat-icon-wrap etk">🎭</div><div class="cat-label">Etkinlik</div><div class="cat-sub">Tümünü Gör</div></div>
+    </div>
+    <div class="section-header"><span class="section-title">Trend Gönderiler</span><span class="section-all">Tümünü Gör</span></div>
+    <div class="swipe-container" id="swipe-container"></div>
+    <div class="swipe-hint"><span>← Kaydet</span><span>Geç →</span></div>
+    <div style="height:24px;"></div>
+  </div>
+  <div class="tab-bar" id="tab-home"></div>
+</div>
+
+<!-- ===== CATEGORY ===== -->
+<div class="screen" id="s-cat">
+  <div class="page-header">
+    <div style="padding:8px 0 6px;display:flex;justify-content:space-between;align-items:center;"><div class="logo" onclick="goTo('s-home')"><svg class="logo-icon" viewBox="0 0 30 30" width="26" height="26" fill="none"><circle cx="12" cy="12" r="9" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/><line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/><text x="12" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="900" fill="#1D4ED8">₺</text></svg><span class="logo-text">netuttu</span></div></div>
+    <div class="back-row" onclick="goBack()"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M13 4L7 10l6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Geri Dön</span></div>
+    <div class="page-header-row"><div class="page-icon" id="cat-page-icon">🍽</div><div><div class="page-title" id="cat-page-title">Restoran</div><div class="page-subtitle" id="cat-page-subtitle">Restoranlar, kafeler ve yemek mekanları</div></div></div>
+    <div class="page-count" id="cat-page-count">9 fiş bulundu · Son 30 gün</div>
+  </div>
+  <div class="filter-scroll"><button class="filter-pill active">En Yeni</button><button class="filter-pill">En Popüler</button><button class="filter-pill">En Düşük Fiyat</button><button class="filter-pill">En Yüksek Puan</button></div>
+  <div class="scroll-body" id="cat-feed"><div style="height:8px;"></div></div>
+  <div class="tab-bar" id="tab-cat"></div>
+</div>
+
+<!-- ===== DETAIL (dynamic) ===== -->
+<div class="screen" id="s-detail">
+  <div class="detail-header">
+    <div style="padding:8px 0 6px;display:flex;justify-content:space-between;align-items:center;"><div class="logo" onclick="goTo('s-home')"><svg class="logo-icon" viewBox="0 0 30 30" width="26" height="26" fill="none"><circle cx="12" cy="12" r="9" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/><line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/><text x="12" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="900" fill="#1D4ED8">₺</text></svg><span class="logo-text">netuttu</span></div></div>
+    <div class="back-link" onclick="goBack()">← Geri Dön</div>
+    <div class="biz-row">
+      <div class="biz-avatar" id="detail-avatar">🍔</div>
+      <div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><span class="biz-info-name" id="detail-name">Burger King</span><span class="verified-badge" id="detail-badge">✓ Doğrulandı %87</span></div><div class="biz-location" id="detail-loc">📍 Kadıköy Moda · ★ 4.5</div></div>
+    </div>
+  </div>
+  <div class="scroll-body" id="detail-body"></div>
+  <div class="tab-bar" id="tab-detail"></div>
+</div>
+
+<!-- ===== SHARE ===== -->
+<div class="screen" id="s-share">
+  <div class="share-page-header"><div style="padding:8px 0 6px;display:flex;justify-content:space-between;align-items:center;"><div class="logo" onclick="goTo('s-home')"><svg class="logo-icon" viewBox="0 0 30 30" width="26" height="26" fill="none"><circle cx="12" cy="12" r="9" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/><line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/><text x="12" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="900" fill="#1D4ED8">₺</text></svg><span class="logo-text">netuttu</span></div></div><div class="share-page-title">Fiş Paylaş</div><div class="share-page-sub">Fişinizi paylaşarak topluluk bilgisine katkıda bulunun.</div></div>
+  <div class="scroll-body">
+    <div class="share-form-card"><div class="detail-card-title">🛡 Fiş Doğrulama Sistemi</div><div class="verify-center"><div class="verify-icon">🛡</div><div class="verify-desc">Fiş paylaşmadan önce doğrulama sürecini başlatabilirsiniz.<br>Doğrulanmış fişler toplulukta daha güvenilir kabul edilir.</div><button class="verify-btn">✦ Doğrulama Başlat</button></div></div>
+    <div class="share-form-card">
+      <div class="form-card-title">Fiş Bilgileri</div><div class="form-card-sub">Lütfen fiş fotoğrafını ve bilgileri eksiksiz doldurun.</div>
+      <div class="field-label">Fiş Fotoğrafı *</div><input type="file" id="receipt-file" accept="image/*" capture="environment" style="display:none;" onchange="previewReceipt(this)"><div class="upload-area" id="upload-area" onclick="document.getElementById('receipt-file').click()"><div class="upload-icon" id="upload-icon">🖼</div><div class="upload-main" id="upload-main">Fiş fotoğrafını çekin veya seçin</div><div class="upload-cta" id="upload-cta">📸 Fotoğraf Çek / Dosya Seç</div><div class="upload-sub" id="upload-sub">PNG, JPG, JPEG veya WebP · maks. 5MB</div><img id="receipt-preview-img" style="display:none;max-width:100%;max-height:180px;border-radius:10px;margin-top:8px;"></div>
+      <div class="field-label">Kategori *</div><div class="field-select"><span style="color:#94A3B8;">Kategori seçin</span><span style="color:#94A3B8;">▾</span></div>
+      <div class="chip-row"><div class="cat-chip active">🍽 Restoran</div><div class="cat-chip">🛒 Market</div><div class="cat-chip">🏪 Mağaza</div><div class="cat-chip">📱 Elektronik</div><div class="cat-chip">🔧 Hizmet</div><div class="cat-chip">🎭 Etkinlik</div></div>
+      <div class="field-label">İşletme Adı *</div><input class="field-input" id="share-store" placeholder="Örn: Cafe Nero, Migros, Mavi">
+      <div class="field-label">Toplam Tutar (₺)</div><input class="field-input" id="share-price" type="number" placeholder="Örn: 245.50">
+      <div class="field-label">Not (isteğe bağlı)</div><input class="field-input" id="share-note" placeholder="Ek bilgi ekleyebilirsiniz">
+      <div class="field-label">Ad Soyad *</div><input class="field-input" id="share-name" placeholder="Adınız ve soyadınız">
+      <div class="kvkk-row"><div class="kvkk-checkbox"></div><div class="kvkk-text"><span class="kvkk-link">KVKK ve Açık Rıza Metni</span>'ni okudum, kabul ediyorum. *</div></div>
+      <button class="submit-cta" id="submit-receipt-btn" onclick="submitReceipt()">Fiş Paylaş →</button>
+    </div>
+    <div style="height:24px;"></div>
+  </div>
+  <div class="tab-bar" id="tab-share"></div>
+</div>
+
+<!-- ===== SAVED ===== -->
+<div class="screen" id="s-saved">
+  <div class="page-header">
+    <div style="padding:8px 0 6px;display:flex;justify-content:space-between;align-items:center;"><div class="logo" onclick="goTo('s-home')"><svg class="logo-icon" viewBox="0 0 30 30" width="26" height="26" fill="none"><circle cx="12" cy="12" r="9" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/><line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/><text x="12" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="900" fill="#1D4ED8">₺</text></svg><span class="logo-text">netuttu</span></div></div>
+    <div class="page-header-row"><div class="page-icon" style="background:var(--blue-light);"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M5 4a2 2 0 012-2h10a2 2 0 012 2v18l-7-4-7 4V4z" fill="#1D4ED8"/></svg></div><div><div class="page-title">Kaydedilenler</div><div class="page-subtitle">Kaydettiğiniz gönderiler burada</div></div></div>
+    <div class="page-count" id="saved-count">0 kayıt</div>
+  </div>
+  <div class="scroll-body" id="saved-feed">
+    <div style="height:8px;"></div>
+    <div class="saved-empty" id="saved-empty"><div class="saved-empty-icon">📌</div><div class="saved-empty-title">Henüz kayıt yok</div><div class="saved-empty-sub">Trend gönderilerde sola kaydırarak beğendiğiniz fişleri kaydedin.</div></div>
+  </div>
+  <div class="tab-bar" id="tab-saved"></div>
+</div>
+
+<!-- ===== PROFILE ===== -->
+<div class="screen" id="s-profile">
+  <div class="profile-header-bg">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div class="logo" onclick="goTo('s-home')"><svg class="logo-icon" viewBox="0 0 30 30" width="24" height="24" fill="none"><circle cx="12" cy="12" r="9" fill="rgba(255,255,255,.2)" stroke="#fff" stroke-width="2.5"/><line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#fff" stroke-width="3" stroke-linecap="round"/><text x="12" y="16" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="900" fill="#fff">₺</text></svg><span class="logo-text" style="background:linear-gradient(90deg,#fff,rgba(255,255,255,.85));-webkit-background-clip:text;">netuttu</span></div><div class="icon-btn" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.2);" onclick="goTo('s-home')"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M15 5L5 15M5 5l10 10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+    <div class="profile-avatar">CC</div>
+    <div class="profile-name">Can Coban</div>
+    <div class="profile-handle">@cancoban · Mayıs 2026'ten beri</div>
+    <div class="profile-stats">
+      <div class="profile-stat"><div class="profile-stat-val">12</div><div class="profile-stat-label">Fiş</div></div>
+      <div class="profile-stat"><div class="profile-stat-val">38</div><div class="profile-stat-label">Yorum</div></div>
+      <div class="profile-stat"><div class="profile-stat-val" id="profile-saved-count">0</div><div class="profile-stat-label">Kayıt</div></div>
+      <div class="profile-stat"><div class="profile-stat-val">4.6</div><div class="profile-stat-label">Puan</div></div>
+    </div>
+  </div>
+  <div class="scroll-body">
+    <div class="profile-menu-card">
+      <div class="profile-menu-item" onclick="goTo('s-my-receipts')"><div class="profile-menu-icon" style="background:#FEF3C7;">🧾</div><div class="profile-menu-text"><div class="profile-menu-title">Paylaştığım Fişler</div><div class="profile-menu-sub">12 fiş paylaştınız</div></div><div class="profile-menu-arrow">›</div></div>
+      <div class="profile-menu-item" onclick="goTo('s-saved')"><div class="profile-menu-icon" style="background:var(--blue-light);">📌</div><div class="profile-menu-text"><div class="profile-menu-title">Kaydedilenler</div><div class="profile-menu-sub">Kaydettiğiniz gönderiler</div></div><div class="profile-menu-arrow">›</div></div>
+      <div class="profile-menu-item" onclick="goTo('s-my-comments')"><div class="profile-menu-icon" style="background:var(--green-bg);">💬</div><div class="profile-menu-text"><div class="profile-menu-title">Yorumlarım</div><div class="profile-menu-sub">38 yorum yaptınız</div></div><div class="profile-menu-arrow">›</div></div>
+    </div>
+    <div class="profile-menu-card">
+      <div class="profile-menu-item" onclick="goTo('s-settings')"><div class="profile-menu-icon" style="background:#EDE9FE;">⚙️</div><div class="profile-menu-text"><div class="profile-menu-title">Ayarlar</div><div class="profile-menu-sub">Hesap, bildirim ve gizlilik</div></div><div class="profile-menu-arrow">›</div></div>
+      <div class="profile-menu-item" onclick="goTo('s-notifications')"><div class="profile-menu-icon" style="background:var(--blue-light);">🔔</div><div class="profile-menu-text"><div class="profile-menu-title">Bildirimler</div><div class="profile-menu-sub">Bildirim tercihleriniz</div></div><div class="profile-menu-arrow">›</div></div>
+      <div class="profile-menu-item" onclick="goTo('s-help')"><div class="profile-menu-icon" style="background:#FCE7F3;">❓</div><div class="profile-menu-text"><div class="profile-menu-title">Yardım ve Destek</div><div class="profile-menu-sub">SSS, iletişim, geri bildirim</div></div><div class="profile-menu-arrow">›</div></div>
+    </div>
+    <div class="profile-logout" onclick="goTo('s-login')">🚪 Çıkış Yap</div>
+  </div>
+  <div class="tab-bar" id="tab-profile"></div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
+<div class="screen" id="s-settings">
+  <div class="settings-header">
+    <div class="settings-back" onclick="goBack()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M12 4l-6 6 6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Profil</span></div>
+    <div class="settings-title">Ayarlar</div>
+    <div class="settings-subtitle">Hesap ve uygulama ayarlarınızı yönetin</div>
+  </div>
+  <div class="scroll-body">
+    <div class="settings-section"><div class="settings-section-title">Hesap</div></div>
+    <div class="settings-card">
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#EFF6FF;">👤</div><div><div class="settings-row-text">Profil Bilgileri</div><div class="settings-row-sub">Ad, kullanıcı adı, fotoğraf</div></div></div><div class="settings-row-right"><span class="settings-row-val">Can Coban</span><span class="settings-row-arrow">›</span></div></div>
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#EFF6FF;">✉️</div><div><div class="settings-row-text">E-posta</div><div class="settings-row-sub">Hesap e-posta adresiniz</div></div></div><div class="settings-row-right"><span class="settings-row-val">c***@gmail.com</span><span class="settings-row-arrow">›</span></div></div>
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#EFF6FF;">🔒</div><div><div class="settings-row-text">Şifre Değiştir</div><div class="settings-row-sub">Hesap güvenliğinizi güncelleyin</div></div></div><div class="settings-row-right"><span class="settings-row-arrow">›</span></div></div>
+    </div>
+    <div class="settings-section"><div class="settings-section-title">Tercihler</div></div>
+    <div class="settings-card">
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#FEF3C7;">🌍</div><div><div class="settings-row-text">Dil</div><div class="settings-row-sub">Uygulama dilini değiştirin</div></div></div><div class="settings-row-right"><span class="settings-row-val">Türkçe</span><span class="settings-row-arrow">›</span></div></div>
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#EDE9FE;">📍</div><div><div class="settings-row-text">Konum</div><div class="settings-row-sub">Varsayılan şehir ayarı</div></div></div><div class="settings-row-right"><span class="settings-row-val">İstanbul</span><span class="settings-row-arrow">›</span></div></div>
+      <div class="settings-row" onclick="toggleDarkMode()"><div class="settings-row-left"><div class="settings-row-icon" style="background:#F1F5F9;">🌙</div><div><div class="settings-row-text">Karanlık Mod</div><div class="settings-row-sub">Göz yorgunluğunu azaltır</div></div></div><div class="settings-row-right"><div class="toggle-switch" id="dark-toggle"></div></div></div>
+    </div>
+    <div class="settings-section"><div class="settings-section-title">Gizlilik</div></div>
+    <div class="settings-card">
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#D1FAE5;">👁️</div><div><div class="settings-row-text">Profilimi Gizle</div><div class="settings-row-sub">Fişleriniz anonim görünsün</div></div></div><div class="settings-row-right"><div class="toggle-switch"></div></div></div>
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#FEE2E2;">📊</div><div><div class="settings-row-text">Veri Paylaşımı</div><div class="settings-row-sub">Anonim kullanım verileri</div></div></div><div class="settings-row-right"><div class="toggle-switch on"></div></div></div>
+    </div>
+    <div class="settings-section"><div class="settings-section-title">Hesap İşlemleri</div></div>
+    <div class="settings-card">
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#FEE2E2;">🗑️</div><div><div class="settings-row-text" style="color:#DC2626;">Hesabı Sil</div><div class="settings-row-sub">Tüm verileriniz kalıcı olarak silinir</div></div></div><div class="settings-row-right"><span class="settings-row-arrow">›</span></div></div>
+    </div>
+    <div style="height:20px;"></div>
+  </div>
+</div>
+
+<!-- ===== NOTIFICATIONS ===== -->
+<div class="screen" id="s-notifications">
+  <div class="settings-header">
+    <div class="settings-back" onclick="goBack()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M12 4l-6 6 6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Profil</span></div>
+    <div class="settings-title">Bildirimler</div>
+    <div class="settings-subtitle">Hangi bildirimleri almak istediğinizi seçin</div>
+  </div>
+  <div class="scroll-body">
+    <div class="settings-section"><div class="settings-section-title">Genel Bildirimler</div></div>
+    <div class="settings-card">
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#EFF6FF;">💬</div><div><div class="settings-row-text">Yorumlar</div><div class="settings-row-sub">Fişlerinize yapılan yorumlar</div></div></div><div class="settings-row-right"><div class="toggle-switch on"></div></div></div>
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#D1FAE5;">👍</div><div><div class="settings-row-text">Beğeniler</div><div class="settings-row-sub">Paylaşımlarınıza gelen beğeniler</div></div></div><div class="settings-row-right"><div class="toggle-switch on"></div></div></div>
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#FEF3C7;">👥</div><div><div class="settings-row-text">Yeni Takipçiler</div><div class="settings-row-sub">Sizi takip eden yeni kişiler</div></div></div><div class="settings-row-right"><div class="toggle-switch on"></div></div></div>
+    </div>
+    <div class="settings-section"><div class="settings-section-title">Fiyat Bildirimleri</div></div>
+    <div class="settings-card">
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#FEE2E2;">📈</div><div><div class="settings-row-text">Fiyat Artışları</div><div class="settings-row-sub">Takip ettiğiniz ürünlerde artış</div></div></div><div class="settings-row-right"><div class="toggle-switch on"></div></div></div>
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#D1FAE5;">📉</div><div><div class="settings-row-text">Fiyat Düşüşleri</div><div class="settings-row-sub">Takip ettiğiniz ürünlerde düşüş</div></div></div><div class="settings-row-right"><div class="toggle-switch on"></div></div></div>
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#EDE9FE;">🏷️</div><div><div class="settings-row-text">Haftalık Rapor</div><div class="settings-row-sub">Fiyat değişim özeti her pazartesi</div></div></div><div class="settings-row-right"><div class="toggle-switch"></div></div></div>
+    </div>
+    <div class="settings-section"><div class="settings-section-title">Bildirim Kanalları</div></div>
+    <div class="settings-card">
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#EFF6FF;">📱</div><div><div class="settings-row-text">Push Bildirimler</div><div class="settings-row-sub">Anlık telefon bildirimleri</div></div></div><div class="settings-row-right"><div class="toggle-switch on"></div></div></div>
+      <div class="settings-row" onclick="this.querySelector('.toggle-switch').classList.toggle('on')"><div class="settings-row-left"><div class="settings-row-icon" style="background:#FEF3C7;">✉️</div><div><div class="settings-row-text">E-posta Bildirimleri</div><div class="settings-row-sub">Önemli güncellemeler e-posta ile</div></div></div><div class="settings-row-right"><div class="toggle-switch"></div></div></div>
+    </div>
+    <div style="height:20px;"></div>
+  </div>
+</div>
+
+<!-- ===== HELP ===== -->
+<div class="screen" id="s-help">
+  <div class="settings-header">
+    <div class="settings-back" onclick="goBack()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M12 4l-6 6 6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Profil</span></div>
+    <div class="settings-title">Yardım ve Destek</div>
+    <div class="settings-subtitle">Sorularınız için buradayız</div>
+  </div>
+  <div class="scroll-body">
+    <input class="help-search" type="text" placeholder="🔍 Soru veya konu arayın..." readonly>
+
+    <div class="settings-section"><div class="settings-section-title">Sık Sorulan Sorular</div></div>
+    <div class="settings-card" id="faq-container">
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">netuttu nedir?</span><span class="faq-arrow">›</span></div><div class="faq-a">netuttu, tüketicilerin alışveriş fişlerini paylaşarak gerçek fiyatları şeffaf hale getirdiği bir topluluk platformudur. Herkes ödediği fiyatı paylaşır, böylece gerçek fiyatlar ortaya çıkar.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Fiş nasıl paylaşılır?</span><span class="faq-arrow">›</span></div><div class="faq-a">Alt bardaki "Fiş Paylaş" butonuna tıklayın, işletme bilgilerini girin, fiş kalemlerini ve fiyatları ekleyin, isterseniz fotoğraf yükleyip doğrulama yaptırın ve gönderin.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Fişler nasıl doğrulanıyor?</span><span class="faq-arrow">›</span></div><div class="faq-a">Paylaştığınız fişler topluluk tarafından oylama ile doğrulanır. Birden fazla kullanıcı aynı fiyatı onayladığında fiş "doğrulanmış" rozeti alır. Ayrıca fiş fotoğrafı yüklemek güvenilirliği artırır.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Puan sistemi nasıl çalışır?</span><span class="faq-arrow">›</span></div><div class="faq-a">Her fiş paylaşımı, yorum ve doğrulama için puan kazanırsınız. Puanınız arttıkça profil rozetiniz yükselir ve toplulukta güvenilirliğiniz artar. Seviyeler: Yeni, Aktif, Güvenilir, Uzman.</div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span class="faq-q-text">Verilerim güvende mi?</span><span class="faq-arrow">›</span></div><div class="faq-a">Evet, kişisel verileriniz KVKK kapsamında korunmaktadır. Fişlerinizi anonim olarak paylaşma seçeneği de mevcuttur. Detaylar için gizlilik politikamızı inceleyebilirsiniz.</div></div>
+    </div>
+
+    <div class="settings-section"><div class="settings-section-title">Bize Ulaşın</div></div>
+    <div class="contact-card" onclick="showToast('📧 E-posta istemcisi açılıyor...')"><div class="contact-card-icon">✉️</div><div class="contact-card-text"><div class="contact-card-title">E-posta ile İletişim</div><div class="contact-card-sub">destek@netuttu.com · 24 saat içinde yanıt</div></div></div>
+    <div class="contact-card" onclick="showToast('💬 Canlı destek başlatılıyor...')"><div class="contact-card-icon">💬</div><div class="contact-card-text"><div class="contact-card-title">Canlı Destek</div><div class="contact-card-sub">Haftaiçi 09:00 — 18:00 arası</div></div></div>
+    <div class="contact-card" onclick="showToast('📝 Geri bildirim formu açılıyor...')"><div class="contact-card-icon">📝</div><div class="contact-card-text"><div class="contact-card-title">Geri Bildirim Gönder</div><div class="contact-card-sub">Önerileriniz bizim için değerli</div></div></div>
+
+    <div class="settings-section"><div class="settings-section-title">Yasal</div></div>
+    <div class="settings-card">
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#F1F5F9;">📄</div><div><div class="settings-row-text">Kullanım Koşulları</div></div></div><div class="settings-row-right"><span class="settings-row-arrow">›</span></div></div>
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#F1F5F9;">🔐</div><div><div class="settings-row-text">Gizlilik Politikası</div></div></div><div class="settings-row-right"><span class="settings-row-arrow">›</span></div></div>
+      <div class="settings-row"><div class="settings-row-left"><div class="settings-row-icon" style="background:#F1F5F9;">📋</div><div><div class="settings-row-text">KVKK Aydınlatma Metni</div></div></div><div class="settings-row-right"><span class="settings-row-arrow">›</span></div></div>
+    </div>
+
+    <div style="text-align:center;padding:16px;font-size:11px;color:#CBD5E1;font-weight:600;">netuttu v1.0.0 · © 2026</div>
+    <div style="height:10px;"></div>
+  </div>
+</div>
+
+<!-- ===== MY RECEIPTS ===== -->
+<div class="screen" id="s-my-receipts">
+  <div class="settings-header">
+    <div class="settings-back" onclick="goBack()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M12 4l-6 6 6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Profil</span></div>
+    <div class="settings-title">Paylaştığım Fişler</div>
+    <div class="settings-subtitle">12 fiş paylaştınız</div>
+  </div>
+  <div class="scroll-body">
+    <div style="height:8px;"></div>
+    <div class="feed-card" onclick="openDetail('burger_king')"><div class="feed-img bk-bg">🍔<div class="price-badge">₺380</div></div><div class="feed-body"><div class="feed-name">Burger King</div><div class="feed-loc">📍 Kadıköy Moda</div><div class="feed-stars"><span class="star-val">★ 4.5</span><span class="star-count">· 💬 24 · 👍 32</span></div><div class="feed-tags"><span class="feed-tag">fast-food</span><span class="feed-tag">burger</span></div><div class="feed-actions"><div class="feed-btn">🧭 Yol</div><div class="feed-btn">↗ Paylaş</div><div class="feed-btn primary" onclick="event.stopPropagation();openDetail('burger_king')">Detayları Gör</div></div></div></div>
+    <div class="feed-card" onclick="openDetail('migros')"><div class="feed-img mkt-bg">🛒<div class="price-badge">₺1.850</div></div><div class="feed-body"><div class="feed-name">Migros</div><div class="feed-loc">📍 Şişli</div><div class="feed-stars"><span class="star-val">★ 4.5</span><span class="star-count">· 💬 18 · 👍 40</span></div><div class="feed-tags"><span class="feed-tag">market</span><span class="feed-tag">alışveriş</span></div><div class="feed-actions"><div class="feed-btn">🧭 Yol</div><div class="feed-btn">↗ Paylaş</div><div class="feed-btn primary" onclick="event.stopPropagation();openDetail('migros')">Detayları Gör</div></div></div></div>
+    <div class="feed-card" onclick="openDetail('starbucks')"><div class="feed-img rest-bg">☕<div class="price-badge">₺285</div></div><div class="feed-body"><div class="feed-name">Starbucks</div><div class="feed-loc">📍 Kadıköy</div><div class="feed-stars"><span class="star-val">★ 4.2</span><span class="star-count">· 💬 24 · 👍 42</span></div><div class="feed-tags"><span class="feed-tag">kahve</span><span class="feed-tag">kafe</span></div><div class="feed-actions"><div class="feed-btn">🧭 Yol</div><div class="feed-btn">↗ Paylaş</div><div class="feed-btn primary" onclick="event.stopPropagation();openDetail('starbucks')">Detayları Gör</div></div></div></div>
+    <div class="feed-card" onclick="openDetail('cafe_nero')"><div class="feed-img rest-bg">☕<div class="price-badge">₺520</div></div><div class="feed-body"><div class="feed-name">Cafe Nero</div><div class="feed-loc">📍 Şişli</div><div class="feed-stars"><span class="star-val">★ 4.8</span><span class="star-count">· 💬 18 · 👍 45</span></div><div class="feed-tags"><span class="feed-tag">kahve</span><span class="feed-tag">kahvaltı</span></div><div class="feed-actions"><div class="feed-btn">🧭 Yol</div><div class="feed-btn">↗ Paylaş</div><div class="feed-btn primary" onclick="event.stopPropagation();openDetail('cafe_nero')">Detayları Gör</div></div></div></div>
+    <div style="height:24px;"></div>
+  </div>
+</div>
+
+<!-- ===== LOCATION PICKER ===== -->
+<div class="screen" id="s-location">
+  <div class="loc-picker-header" id="loc-header">
+    <div class="loc-picker-back" onclick="locGoBack()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M12 4l-6 6 6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="loc-back-label">Geri</span></div>
+    <div class="loc-picker-title" id="loc-title">Bölge Seçin</div>
+    <div class="loc-picker-subtitle" id="loc-subtitle">Fiyatları görmek istediğiniz bölgeyi belirleyin</div>
+    <div class="loc-breadcrumb" id="loc-breadcrumb"></div>
+  </div>
+  <div class="scroll-body" id="loc-scroll" style="padding-bottom:20px;"></div>
+</div>
+
+<!-- ===== SEARCH ===== -->
+<div class="screen" id="s-search">
+  <div class="search-header">
+    <div class="search-bar-row">
+      <div class="search-back" onclick="goBack()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M12 4l-6 6 6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <input class="search-input" id="search-input" type="text" placeholder="Ürün veya işletme ara... (örn: süt, ekmek)" oninput="performSearch(this.value)">
+      <div class="search-clear" onclick="clearSearch()">&#x2715;</div>
+    </div>
+  </div>
+  <div class="scroll-body" id="search-results">
+    <div class="search-suggestions" id="search-suggestions">
+      <div class="settings-section"><div class="settings-section-title">Popüler Aramalar</div></div>
+      <div class="search-chips">
+        <span class="search-chip" onclick="performSearch('süt');document.getElementById('search-input').value='süt'">🥛 Süt</span>
+        <span class="search-chip" onclick="performSearch('ekmek');document.getElementById('search-input').value='ekmek'">🍞 Ekmek</span>
+        <span class="search-chip" onclick="performSearch('kahve');document.getElementById('search-input').value='kahve'">☕ Kahve</span>
+        <span class="search-chip" onclick="performSearch('et');document.getElementById('search-input').value='et'">🥩 Et</span>
+        <span class="search-chip" onclick="performSearch('jean');document.getElementById('search-input').value='jean'">👖 Jean</span>
+        <span class="search-chip" onclick="performSearch('telefon');document.getElementById('search-input').value='telefon'">📱 Telefon</span>
+        <span class="search-chip" onclick="performSearch('burger');document.getElementById('search-input').value='burger'">🍔 Burger</span>
+        <span class="search-chip" onclick="performSearch('laptop');document.getElementById('search-input').value='laptop'">💻 Laptop</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MY COMMENTS ===== -->
+<div class="screen" id="s-my-comments">
+  <div class="settings-header">
+    <div class="settings-back" onclick="goBack()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M12 4l-6 6 6 6" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Profil</span></div>
+    <div class="settings-title">Yorumlarım</div>
+    <div class="settings-subtitle">38 yorum yaptınız</div>
+  </div>
+  <div class="scroll-body">
+    <div class="comment-block"><div class="comment-head"><div class="comment-avatar" style="background:var(--blue);">CC</div><div><div class="comment-name">Burger King</div><div class="comment-date">15 Ocak 2026</div></div></div><div class="comment-text">Whopper her zamanki gibi lezzetliydi, patates kızartmaları da taze ve sıcaktı. Fiyatlar biraz artmış ama hala makul.</div><div class="comment-actions"><span>❤️ 12</span></div></div>
+    <div class="comment-block"><div class="comment-head"><div class="comment-avatar" style="background:var(--green);">CC</div><div><div class="comment-name">Migros</div><div class="comment-date">28 Ocak 2026</div></div></div><div class="comment-text">Haftalık alışveriş giderek pahalılaşıyor ama Money Club indirimleri olmasa daha da kötü olurdu.</div><div class="comment-actions"><span>❤️ 24</span></div></div>
+    <div class="comment-block"><div class="comment-head"><div class="comment-avatar" style="background:var(--orange);">CC</div><div><div class="comment-name">Cafe Nero</div><div class="comment-date">20 Ocak 2026</div></div></div><div class="comment-text">Kahvaltı tabağı doyurucu ve sunumu güzel. Latte kalitesi her zamanki gibi tutarlı. Ambiyans da harika.</div><div class="comment-actions"><span>❤️ 18</span></div></div>
+    <div class="comment-block"><div class="comment-head"><div class="comment-avatar" style="background:var(--purple);">CC</div><div><div class="comment-name">Starbucks</div><div class="comment-date">25 Ocak 2026</div></div></div><div class="comment-text">Caramel Macchiato favorim, WiFi hızlı ve ortam çalışmaya uygun. Fiyatlar yüksek ama kalite tutarlı.</div><div class="comment-actions"><span>❤️ 9</span></div></div>
+    <div class="comment-block"><div class="comment-head"><div class="comment-avatar" style="background:var(--blue);">CC</div><div><div class="comment-name">Mavi</div><div class="comment-date">5 Şubat 2026</div></div></div><div class="comment-text">Jean kalitesi mükemmel, uzun süre dayanıyor. Basic t-shirtleri de tavsiye ederim, kumaşı yumuşak.</div><div class="comment-actions"><span>❤️ 6</span></div></div>
+    <div style="height:24px;"></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ===== TAB BAR TEMPLATE =====
+var svgHome='<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M3 10.5L12 2L21 10.5V21a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1V10.5Z" ##FILL## /></svg>';
+var svgSearch='<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="11" cy="11" r="7" stroke="##C##" stroke-width="1.8"/><line x1="16" y1="16" x2="21" y2="21" stroke="##C##" stroke-width="1.8" stroke-linecap="round"/></svg>';
+var svgPlus='<svg viewBox="0 0 22 22" fill="none" width="20" height="20"><line x1="11" y1="3" x2="11" y2="19" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><line x1="3" y1="11" x2="19" y2="11" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>';
+var svgBookmark='<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M5 4a2 2 0 012-2h10a2 2 0 012 2v18l-7-4-7 4V4z" ##FILL## /></svg>';
+var svgProfile='<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 2C9 2 7 5 7 8.5S9 15 12 15s5-3 5-6.5S15 2 12 2Z" stroke="##C##" stroke-width="1.8"/><path d="M2 22c0-5 4.5-8 10-8s10 3 10 8" stroke="##C##" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+function buildTabBar(active) {
+  var tabs = [
+    {id:'s-home',label:'Anasayfa',icon:'home'},
+    {id:'s-cat-kesfet',label:'Keşfet',icon:'search'},
+    {id:'s-share',label:'Fiş Paylaş',icon:'plus'},
+    {id:'s-saved',label:'Kayıtlar',icon:'bookmark'},
+    {id:'s-profile',label:'Profil',icon:'profile'}
+  ];
+  var html = '';
+  tabs.forEach(function(t) {
+    var isActive = (t.id === active);
+    var cls = 'tab-item' + (isActive ? ' active' : '');
+    var c = isActive ? '#1D4ED8' : '#94A3B8';
+    var iconHtml = '';
+    if (t.icon === 'home') iconHtml = '<div class="tab-icon">' + svgHome.replace('##FILL##', isActive ? 'fill="#1D4ED8"' : 'stroke="#94A3B8" stroke-width="1.8" fill="none"') + '</div>';
+    else if (t.icon === 'search') iconHtml = '<div class="tab-icon">' + svgSearch.replace(/##C##/g, c) + '</div>';
+    else if (t.icon === 'plus') iconHtml = '<div class="tab-plus">' + svgPlus + '</div>';
+    else if (t.icon === 'bookmark') iconHtml = '<div class="tab-icon">' + svgBookmark.replace('##FILL##', isActive ? 'fill="#1D4ED8"' : 'stroke="#94A3B8" stroke-width="1.8" fill="none"') + '</div>';
+    else if (t.icon === 'profile') iconHtml = '<div class="tab-icon">' + svgProfile.replace(/##C##/g, c) + '</div>';
+    var onclick = t.id === 's-cat-kesfet' ? "goTo('s-search')" : "goTo('" + t.id + "')";
+    var labelStyle = isActive ? ' style="color:var(--blue);"' : '';
+    html += '<div class="' + cls + '" onclick="' + onclick + '">' + iconHtml + '<span class="tab-label"' + labelStyle + '>' + t.label + '</span></div>';
+  });
+  return html;
+}
+
+// Render all tab bars
+document.getElementById('tab-home').innerHTML = buildTabBar('s-home');
+document.getElementById('tab-cat').innerHTML = buildTabBar('s-cat-kesfet');
+document.getElementById('tab-detail').innerHTML = buildTabBar('s-cat-kesfet');
+document.getElementById('tab-share').innerHTML = buildTabBar('s-share');
+document.getElementById('tab-saved').innerHTML = buildTabBar('s-saved');
+document.getElementById('tab-profile').innerHTML = buildTabBar('s-profile');
+
+// ===== NAVIGATION =====
+var screenHistory = ['s-login'];
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  screenHistory.push(id);
+  var sb = document.getElementById(id).querySelector('.scroll-body');
+  if (sb) sb.scrollTop = 0;
+  if (id === 's-saved') renderSavedPage();
+}
+function goBack() {
+  if (screenHistory.length > 1) {
+    screenHistory.pop();
+    var prev = screenHistory[screenHistory.length - 1];
+    document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+    document.getElementById(prev).classList.add('active');
+  }
+}
+
+// ===== LOGIN TAB =====
+function toggleLoginTab(tab) {
+  document.getElementById('form-giris').style.display = tab === 'giris' ? 'block' : 'none';
+  document.getElementById('form-kayit').style.display = tab === 'kayit' ? 'block' : 'none';
+  document.getElementById('btn-giris').classList.toggle('active', tab === 'giris');
+  document.getElementById('btn-kayit').classList.toggle('active', tab === 'kayit');
+}
+
+// ===== HERO SLIDER =====
+var currentSlide = 0, totalSlides = 3, autoTimer;
+function updateSlider() { var t = document.getElementById('slides-track'); if(!t)return; t.style.transform='translateX(-'+(currentSlide*33.333)+'%)'; for(var i=0;i<totalSlides;i++){var d=document.getElementById('dot-'+i);if(d)d.classList.toggle('active',i===currentSlide);} }
+function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(function(){currentSlide=(currentSlide+1)%totalSlides;updateSlider();},3200); }
+resetAuto();
+
+// ===== FILTER/CHIP CLICKS =====
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('filter-pill')) { e.target.closest('.filter-scroll').querySelectorAll('.filter-pill').forEach(function(p){p.classList.remove('active');}); e.target.classList.add('active'); }
+  if (e.target.classList.contains('cat-chip')) { e.target.closest('.chip-row').querySelectorAll('.cat-chip').forEach(function(c){c.classList.remove('active');}); e.target.classList.add('active'); }
+});
+
+// ===== BUSINESS DETAIL DATA =====
+var bizData = {
+  burger_king: { emoji:'🍔', name:'Burger King', badge:'✓ Doğrulandı %87', loc:'📍 Kadıköy Moda · ★ 4.5', date:'15 Ocak 2026', total:'₺380', desc:'Whopper Menü + King Chicken', addr:'Moda Cad. No:123, Kadıköy/İstanbul',
+    items:[{n:'Whopper Menü',q:'1x',p:'₺189,90'},{n:'King Chicken Menü',q:'1x',p:'₺169,90'},{n:'Soğan Halkası',q:'1x',p:'₺34,90'}],
+    comments:[{avatar:'AK',color:'var(--blue)',name:'Ahmet K.',date:'15 Ocak 2026',text:'Burger King\'de öğle yemeği. Whopper her zamanki gibi lezzetliydi, patates kızartmaları da taze ve sıcaktı.',actions:'❤️ 32 · 💬 24'},
+      {avatar:'MY',color:'var(--green)',name:'Mehmet Y.',date:'7 gün önce',text:'Fiyat/performans açısından iyi. Özellikle menü fiyatları makul.',actions:'👍 8'},
+      {avatar:'AK',color:'var(--purple)',name:'Ayşe K.',date:'1 gün önce',text:'Patates kızartmaları gerçekten çok iyi!',actions:'❤️ 5'}]
+  },
+  cafe_nero: { emoji:'☕', name:'Cafe Nero', badge:'✓ Doğrulandı %92', loc:'📍 Şişli · ★ 4.8', date:'20 Ocak 2026', total:'₺520', desc:'Kahvaltı Tabağı + Latte', addr:'Abdi İpekçi Cad. No:45, Şişli/İstanbul',
+    items:[{n:'Kahvaltı Tabağı',q:'1x',p:'₺295,00'},{n:'Cafe Latte',q:'2x',p:'₺150,00'},{n:'Taze Portakal Suyu',q:'1x',p:'₺75,00'}],
+    comments:[{avatar:'ZD',color:'var(--orange)',name:'Zeynep D.',date:'20 Ocak 2026',text:'Kahvaltı tabağı çok doyurucu ve taze. Latte\'leri de her zamanki gibi mükemmel.',actions:'❤️ 45 · 💬 18'},
+      {avatar:'BT',color:'var(--blue)',name:'Burak T.',date:'3 gün önce',text:'Brunch için en sevdiğim mekan. Ambiyansı da çok güzel.',actions:'👍 12'}]
+  },
+  nusret: { emoji:'🥩', name:'Nusret', badge:'✓ Doğrulandı %78', loc:'📍 Etiler · ★ 3.9', date:'12 Şubat 2026', total:'₺8.500', desc:'Özel Menü (2 kişilik)', addr:'Etiler Mah. Nisbetiye Cad., Beşiktaş/İstanbul',
+    items:[{n:'Ottoman Steak',q:'1x',p:'₺4.200,00'},{n:'Kaburga',q:'1x',p:'₺2.400,00'},{n:'Baklava',q:'2x',p:'₺1.100,00'},{n:'İçecekler',q:'1x',p:'₺800,00'}],
+    comments:[{avatar:'SK',color:'var(--purple)',name:'Selin K.',date:'12 Şubat 2026',text:'Et kalitesi gerçekten çok iyi ama fiyatlar uçmuş. Ambiyans fotoğraf çekmeye uygun.',actions:'❤️ 18 · 💬 22'},
+      {avatar:'ET',color:'var(--green)',name:'Emre T.',date:'5 gün önce',text:'Bir kere deneyimlemek için gidilir ama sürekli gidilebilecek bir yer değil fiyat olarak.',actions:'👍 14'}]
+  },
+  starbucks: { emoji:'☕', name:'Starbucks', badge:'✓ Doğrulandı %90', loc:'📍 Kadıköy · ★ 4.2', date:'25 Ocak 2026', total:'₺285', desc:'Caramel Macchiato + Cookie', addr:'Bahariye Cad. No:78, Kadıköy/İstanbul',
+    items:[{n:'Caramel Macchiato (Grande)',q:'1x',p:'₺165,00'},{n:'Chocolate Chip Cookie',q:'1x',p:'₺85,00'},{n:'Su',q:'1x',p:'₺35,00'}],
+    comments:[{avatar:'DY',color:'var(--blue)',name:'Deniz Y.',date:'25 Ocak 2026',text:'Her zamanki Starbucks kalitesi. WiFi hızlı, oturmak için güzel bir yer.',actions:'❤️ 42 · 💬 24'},
+      {avatar:'LK',color:'var(--orange)',name:'Lale K.',date:'2 gün önce',text:'Fiyatlar biraz yüksek ama kahve kalitesi tutarlı.',actions:'👍 9'}]
+  },
+  migros: { emoji:'🛒', name:'Migros', badge:'✓ Doğrulandı %95', loc:'📍 Şişli · ★ 4.5', date:'28 Ocak 2026', total:'₺1.850', desc:'Haftalık Market Alışverişi', addr:'Büyükdere Cad. No:15, Şişli/İstanbul',
+    items:[{n:'Süt, Yoğurt, Peynir',q:'1x',p:'₺420,00'},{n:'Et ve Tavuk',q:'1x',p:'₺680,00'},{n:'Meyve ve Sebze',q:'1x',p:'₺340,00'},{n:'Temizlik Malzemesi',q:'1x',p:'₺260,00'},{n:'Atıştırmalık',q:'1x',p:'₺150,00'}],
+    comments:[{avatar:'FK',color:'var(--green)',name:'Fatma K.',date:'28 Ocak 2026',text:'Haftalık alışveriş bu kadar tutuyor artık. Money Club indirimleri iyi.',actions:'❤️ 40 · 💬 18'},
+      {avatar:'HB',color:'var(--blue)',name:'Hasan B.',date:'4 gün önce',text:'BİM ve A101\'e göre pahalı ama ürün çeşitliliği çok daha iyi.',actions:'👍 11'}]
+  },
+  carrefoursa: { emoji:'🛒', name:'CarrefourSA', badge:'✓ Doğrulandı %88', loc:'📍 Beşiktaş · ★ 4.2', date:'1 Şubat 2026', total:'₺1.350', desc:'Aylık Toplu Alışveriş', addr:'Barbaros Bulvarı No:200, Beşiktaş/İstanbul',
+    items:[{n:'Temel Gıda',q:'1x',p:'₺580,00'},{n:'İçecekler',q:'1x',p:'₺320,00'},{n:'Kişisel Bakım',q:'1x',p:'₺280,00'},{n:'Diğer',q:'1x',p:'₺170,00'}],
+    comments:[{avatar:'GS',color:'var(--purple)',name:'Gökçe S.',date:'1 Şubat 2026',text:'Kampanyalar oldukça avantajlı. Özellikle hafta sonu indirimleri kaçırılmamalı.',actions:'❤️ 28 · 💬 12'}]
+  },
+  bim: { emoji:'🛒', name:'BİM', badge:'✓ Doğrulandı %93', loc:'📍 Üsküdar · ★ 4.0', date:'3 Şubat 2026', total:'₺780', desc:'Temel İhtiyaç Alışverişi', addr:'Ünalan Mah. No:55, Üsküdar/İstanbul',
+    items:[{n:'Süt Ürünleri',q:'1x',p:'₺195,00'},{n:'Ekmek ve Unlu Mamul',q:'1x',p:'₺95,00'},{n:'Temizlik',q:'1x',p:'₺175,00'},{n:'Atıştırmalık',q:'1x',p:'₺135,00'},{n:'Diğer',q:'1x',p:'₺180,00'}],
+    comments:[{avatar:'MA',color:'var(--orange)',name:'Murat A.',date:'3 Şubat 2026',text:'En uygun fiyatlı market. Özel markaları da kaliteli. Her hafta salı indirimlerini takip edin.',actions:'❤️ 55 · 💬 22'}]
+  },
+  mavi: { emoji:'👕', name:'Mavi', badge:'✓ Doğrulandı %85', loc:'📍 Bağdat Cad. · ★ 4.3', date:'5 Şubat 2026', total:'₺2.600', desc:'Jean + T-Shirt', addr:'Bağdat Cad. No:312, Kadıköy/İstanbul',
+    items:[{n:'Slim Fit Jean',q:'1x',p:'₺1.499,00'},{n:'Basic T-Shirt',q:'2x',p:'₺849,00'},{n:'Kemer',q:'1x',p:'₺299,00'}],
+    comments:[{avatar:'EG',color:'var(--blue)',name:'Elif G.',date:'5 Şubat 2026',text:'Mavi\'nin jean kalitesi her zaman iyi. İndirim dönemini beklerseniz çok daha uygun alabilirsiniz.',actions:'❤️ 18 · 💬 9'},
+      {avatar:'CD',color:'var(--green)',name:'Cem D.',date:'2 gün önce',text:'Basic t-shirtleri gerçekten çok kaliteli, tavsiye ederim.',actions:'👍 6'}]
+  },
+  nike: { emoji:'👟', name:'Nike Store', badge:'✓ Doğrulandı %91', loc:'📍 Nişantaşı · ★ 4.6', date:'10 Şubat 2026', total:'₺5.900', desc:'Air Max + Spor Çorap', addr:'Teşvikiye Cad. No:89, Nişantaşı/İstanbul',
+    items:[{n:'Air Max 90',q:'1x',p:'₺5.199,00'},{n:'Dri-FIT Çorap (3\'lü)',q:'1x',p:'₺499,00'},{n:'Ayakkabı Bakım Seti',q:'1x',p:'₺199,00'}],
+    comments:[{avatar:'KY',color:'var(--orange)',name:'Kaan Y.',date:'10 Şubat 2026',text:'Air Max 90 klasik bir model, kalitesi tartışılmaz. Fiyat yüksek ama uzun süre giyiliyor.',actions:'❤️ 33 · 💬 14'}]
+  },
+  apple_store: { emoji:'📱', name:'Apple Store', badge:'✓ Doğrulandı %96', loc:'📍 Zorlu Center · ★ 4.7', date:'18 Şubat 2026', total:'₺84.999', desc:'iPhone 16 Pro Max', addr:'Zorlu Center, Beşiktaş/İstanbul',
+    items:[{n:'iPhone 16 Pro Max 256GB',q:'1x',p:'₺79.999,00'},{n:'MagSafe Kılıf',q:'1x',p:'₺3.499,00'},{n:'Ekran Koruyucu',q:'1x',p:'₺1.499,00'}],
+    comments:[{avatar:'OT',color:'var(--blue)',name:'Oğuz T.',date:'18 Şubat 2026',text:'Mağazadaki deneyim çok iyi. Personel bilgili ve yardımcı. Fiyat yüksek ama Apple kalitesi.',actions:'❤️ 22 · 💬 8'}]
+  },
+  mediamarkt: { emoji:'💻', name:'MediaMarkt', badge:'✓ Doğrulandı %84', loc:'📍 Forum İstanbul · ★ 4.1', date:'22 Şubat 2026', total:'₺32.500', desc:'Lenovo Laptop', addr:'Forum İstanbul AVM, Bayrampaşa/İstanbul',
+    items:[{n:'Lenovo IdeaPad 5',q:'1x',p:'₺28.999,00'},{n:'Laptop Çantası',q:'1x',p:'₺1.599,00'},{n:'Mouse',q:'1x',p:'₺699,00'},{n:'USB-C Hub',q:'1x',p:'₺449,00'}],
+    comments:[{avatar:'RK',color:'var(--purple)',name:'Rıza K.',date:'22 Şubat 2026',text:'Fiyat karşılaştırması yapmadan almayın. Online\'da daha uygun bulabilirsiniz ama garanti kolaylığı var.',actions:'❤️ 27 · 💬 15'}]
+  },
+  bay_kuafor: { emoji:'✂️', name:'Bay Kuaför', badge:'✓ Doğrulandı %80', loc:'📍 Kadıköy · ★ 4.4', date:'8 Mart 2026', total:'₺650', desc:'Saç + Sakal Tıraşı', addr:'Moda Cad. No:56, Kadıköy/İstanbul',
+    items:[{n:'Saç Kesimi',q:'1x',p:'₺400,00'},{n:'Sakal Düzeltme',q:'1x',p:'₺180,00'},{n:'Yıkama',q:'1x',p:'₺70,00'}],
+    comments:[{avatar:'AT',color:'var(--green)',name:'Ali T.',date:'8 Mart 2026',text:'Çok düzgün iş çıkarıyor. Randevu almak gerekiyor çünkü sürekli dolu.',actions:'❤️ 14 · 💬 6'}]
+  },
+  oto_servis: { emoji:'🔧', name:'Oto Servis Ali', badge:'✓ Doğrulandı %75', loc:'📍 Maltepe · ★ 4.2', date:'15 Mart 2026', total:'₺1.800', desc:'Yağ Değişimi + Filtre', addr:'Cevizli Mah. No:22, Maltepe/İstanbul',
+    items:[{n:'Motor Yağı (4L)',q:'1x',p:'₺850,00'},{n:'Yağ Filtresi',q:'1x',p:'₺350,00'},{n:'Hava Filtresi',q:'1x',p:'₺300,00'},{n:'İşçilik',q:'1x',p:'₺300,00'}],
+    comments:[{avatar:'VK',color:'var(--blue)',name:'Volkan K.',date:'15 Mart 2026',text:'Güvenilir bir usta. Gereksiz parça değişimi yapmıyor, dürüst çalışıyor.',actions:'❤️ 19 · 💬 11'}]
+  },
+  vw_arena: { emoji:'🎵', name:'Volkswagen Arena', badge:'✓ Doğrulandı %88', loc:'📍 Maslak · ★ 4.6', date:'20 Mart 2026', total:'₺1.200', desc:'Konser Bileti', addr:'Maslak Mah., Sarıyer/İstanbul',
+    items:[{n:'Konser Bileti (Tribün)',q:'1x',p:'₺950,00'},{n:'Otopark',q:'1x',p:'₺150,00'},{n:'Vestiyer',q:'1x',p:'₺100,00'}],
+    comments:[{avatar:'NB',color:'var(--orange)',name:'Nisa B.',date:'20 Mart 2026',text:'Ses sistemi mükemmel. Tribün koltukları rahat. Otopark biraz pahalı ama İstanbul şartlarında normal.',actions:'❤️ 38 · 💬 20'}]
+  },
+  ist_tiyatro: { emoji:'🎭', name:'İstanbul Tiyatrosu', badge:'✓ Doğrulandı %82', loc:'📍 Beyoğlu · ★ 4.8', date:'25 Mart 2026', total:'₺550', desc:'Tiyatro Oyunu Bileti', addr:'İstiklal Cad. No:140, Beyoğlu/İstanbul',
+    items:[{n:'Tiyatro Bileti',q:'2x',p:'₺450,00'},{n:'Program Dergisi',q:'1x',p:'₺100,00'}],
+    comments:[{avatar:'SD',color:'var(--purple)',name:'Seda D.',date:'25 Mart 2026',text:'Oyun muhteşemdi, oyuncular çok yetenekli. Kültürel aktivite arayan herkese tavsiye ederim.',actions:'❤️ 16 · 💬 7'}]
+  },
+  muqa: { emoji:'🍦', name:'Muqa Dondurma', badge:'✓ Doğrulandı %83', loc:'📍 Çeşme · ★ 4.5', date:'10 Nisan 2026', total:'₺580', desc:'Dondurma Çeşitleri', addr:'Çeşme Marina, Çeşme/İzmir',
+    items:[{n:'Özel Karışım (3 Top)',q:'2x',p:'₺380,00'},{n:'Waffle',q:'1x',p:'₺140,00'},{n:'Su',q:'1x',p:'₺60,00'}],
+    comments:[{avatar:'IY',color:'var(--green)',name:'Işıl Y.',date:'10 Nisan 2026',text:'Çeşme\'nin en iyi dondurmacısı. Antep fıstıklı ve mango çeşitleri mutlaka denenilmeli.',actions:'❤️ 24 · 💬 12'}]
+  }
+};
+
+// Map category item names to bizData keys
+var nameToBizKey = {
+  'Burger King':'burger_king','Cafe Nero':'cafe_nero','Muqa Dondurma':'muqa',
+  'Migros':'migros','CarrefourSA':'carrefoursa','BİM':'bim',
+  'Mavi':'mavi','Nike Store':'nike',
+  'Apple Store':'apple_store','MediaMarkt':'mediamarkt',
+  'Bay Kuaför':'bay_kuafor','Oto Servis Ali':'oto_servis',
+  'Volkswagen Arena':'vw_arena','İstanbul Tiyatrosu':'ist_tiyatro',
+  'Starbucks':'starbucks','Nusret':'nusret'
+};
+
+function openDetail(key) {
+  var biz = bizData[key];
+  if (!biz) { goTo('s-detail'); return; }
+  document.getElementById('detail-avatar').textContent = biz.emoji;
+  document.getElementById('detail-name').textContent = biz.name;
+  document.getElementById('detail-badge').textContent = biz.badge;
+  document.getElementById('detail-loc').textContent = biz.loc;
+
+  var h = '';
+  // Receipt hero
+  h += '<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 16px 10px;font-size:14px;font-weight:800;color:var(--text);"><span>Paylaşılan Fişler (1)</span></div>';
+  h += '<div class="receipt-hero-box"><div class="receipt-thumb">🧾<div class="receipt-thumb-badge">✓ Doğrulandı</div></div><div><div style="font-size:11px;color:var(--sub);">📅 '+biz.date+'</div><div style="font-size:18px;font-weight:900;color:var(--blue);margin-top:4px;">'+biz.total+'</div><div style="font-size:11px;color:var(--sub);margin-top:3px;">'+biz.desc+'</div></div></div>';
+
+  // First comment as main
+  if (biz.comments.length > 0) {
+    var c = biz.comments[0];
+    h += '<div class="comment-block" style="margin-top:14px;"><div class="comment-head"><div class="comment-avatar" style="background:'+c.color+';">'+c.avatar+'</div><div><div class="comment-name">'+c.name+'</div><div class="comment-date">'+c.date+'</div></div></div><div class="comment-text">'+c.text+'</div><div class="comment-actions"><span>'+c.actions+'</span></div></div>';
+  }
+
+  // Receipt items
+  h += '<div style="height:14px;"></div><div class="receipt-card"><div class="receipt-header"><span class="receipt-title">🧾 Ürün Listesi</span><span class="receipt-total">'+biz.total+'</span></div>';
+  biz.items.forEach(function(it) {
+    h += '<div class="receipt-row"><div><div class="receipt-item-name">'+it.n+'</div><div class="receipt-item-qty">'+it.q+'</div></div><div class="receipt-item-price">'+it.p+'</div></div>';
+  });
+  h += '</div>';
+
+  // Action buttons
+  h += '<div class="action-row"><div class="action-btn">🧭 Yol</div><div class="action-btn">↗ Paylaş</div><div class="action-btn">📱 SMS</div><div class="action-btn">📊 QR</div></div>';
+
+  // Map
+  h += '<div class="map-card"><div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;">📍 Konum</div><div style="font-size:13px;font-weight:700;color:var(--text);">'+biz.name+'</div><div style="font-size:12px;color:var(--sub);margin-bottom:12px;">'+biz.addr+'</div><div class="map-preview"><div class="map-grid-lines"></div>📍</div><div class="nav-app-row"><div class="nav-app-btn">🗺 Google Maps</div><div class="nav-app-btn">🧭 Waze</div><div class="nav-app-btn">📍 Yandex</div></div></div>';
+
+  // Comments
+  if (biz.comments.length > 1) {
+    h += '<div style="padding:16px 16px 6px;font-size:14px;font-weight:800;color:var(--text);">Yorumlar ('+(biz.comments.length-1)+')</div>';
+    for (var i = 1; i < biz.comments.length; i++) {
+      var cm = biz.comments[i];
+      h += '<div class="comment-block"><div class="comment-head"><div class="comment-avatar" style="background:'+cm.color+';">'+cm.avatar+'</div><div><div class="comment-name">'+cm.name+'</div><div class="comment-date">'+cm.date+'</div></div></div><div class="comment-text">'+cm.text+'</div><div class="comment-actions"><span>'+cm.actions+'</span></div></div>';
+    }
+  }
+
+  // Comment input
+  h += '<div class="comment-input-card"><div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:10px;">Yorum Yap</div><div class="comment-input-area">Deneyiminizi paylaşın...</div><button class="comment-submit">Yorum Gönder</button></div><div style="height:24px;"></div>';
+
+  document.getElementById('detail-body').innerHTML = h;
+  goTo('s-detail');
+}
+
+// ===== CATEGORY DATA =====
+var catData = {
+  rest: { icon:'🍽', iconBg:'#FEF3C7', name:'Restoran', sub:'Restoranlar, kafeler ve yemek mekanları', count:'9 fiş bulundu · Son 30 gün',
+    items:[{emoji:'🍔',bg:'bk-bg',price:'₺380',name:'Burger King',loc:'📍 Kadıköy',star:'★ 4.5',comments:'💬 24 · 👍 32',tags:['fast-food','burger'],district:'Kadıköy'},
+      {emoji:'☕',bg:'rest-bg',price:'₺520',name:'Cafe Nero',loc:'📍 Şişli',star:'★ 4.8',comments:'💬 18 · 👍 45',tags:['kahve','kahvaltı'],district:'Şişli'},
+      {emoji:'🍦',bg:'rest-bg',price:'₺580',name:'Muqa Dondurma',loc:'📍 Çeşme',star:'★ 4.5',comments:'💬 12 · 👍 24',tags:['dondurma','tatlı'],district:'Çeşme'}]},
+  mkt: { icon:'🛒', iconBg:'#D1FAE5', name:'Market', sub:'Süpermarketler ve bakkallar', count:'14 fiş bulundu · Son 30 gün',
+    items:[{emoji:'🛒',bg:'mkt-bg',price:'₺1.850',name:'Migros',loc:'📍 Şişli',star:'★ 4.5',comments:'💬 18 · 👍 40',tags:['market','alışveriş'],district:'Şişli'},
+      {emoji:'🛒',bg:'mkt-bg',price:'₺1.350',name:'CarrefourSA',loc:'📍 Beşiktaş',star:'★ 4.2',comments:'💬 12 · 👍 28',tags:['market','indirim'],district:'Beşiktaş'},
+      {emoji:'🛒',bg:'mkt-bg',price:'₺780',name:'BİM',loc:'📍 Üsküdar',star:'★ 4.0',comments:'💬 22 · 👍 55',tags:['market','uygun'],district:'Üsküdar'}]},
+  shop: { icon:'🏪', iconBg:'#DBEAFE', name:'Mağaza', sub:'Perakende mağazalar ve moda', count:'7 fiş bulundu · Son 30 gün',
+    items:[{emoji:'👕',bg:'shop-bg',price:'₺2.600',name:'Mavi',loc:'📍 Bağdat Cad.',star:'★ 4.3',comments:'💬 9 · 👍 18',tags:['giyim','moda'],district:'Kadıköy'},
+      {emoji:'👟',bg:'shop-bg',price:'₺5.900',name:'Nike Store',loc:'📍 Nişantaşı',star:'★ 4.6',comments:'💬 14 · 👍 33',tags:['spor','ayakkabı'],district:'Nişantaşı'}]},
+  el: { icon:'📱', iconBg:'#EDE9FE', name:'Elektronik', sub:'Teknoloji ve elektronik ürünler', count:'5 fiş bulundu · Son 30 gün',
+    items:[{emoji:'📱',bg:'el-bg',price:'₺84.999',name:'Apple Store',loc:'📍 Zorlu Center',star:'★ 4.7',comments:'💬 8 · 👍 22',tags:['telefon','apple'],district:'Beşiktaş'},
+      {emoji:'💻',bg:'el-bg',price:'₺32.500',name:'MediaMarkt',loc:'📍 Forum İstanbul',star:'★ 4.1',comments:'💬 15 · 👍 27',tags:['laptop','elektronik'],district:'Bayrampaşa'}]},
+  hiz: { icon:'🔧', iconBg:'#FCE7F3', name:'Hizmet', sub:'Tamirci, berber, temizlik ve hizmetler', count:'4 fiş bulundu · Son 30 gün',
+    items:[{emoji:'✂️',bg:'hiz-bg',price:'₺650',name:'Bay Kuaför',loc:'📍 Kadıköy',star:'★ 4.4',comments:'💬 6 · 👍 14',tags:['kuaför','bakım'],district:'Kadıköy'},
+      {emoji:'🔧',bg:'hiz-bg',price:'₺1.800',name:'Oto Servis Ali',loc:'📍 Maltepe',star:'★ 4.2',comments:'💬 11 · 👍 19',tags:['oto','tamir'],district:'Maltepe'}]},
+  etk: { icon:'🎭', iconBg:'#FEE2E2', name:'Etkinlik', sub:'Konserler, tiyatro ve etkinlikler', count:'3 fiş bulundu · Son 30 gün',
+    items:[{emoji:'🎵',bg:'etk-bg',price:'₺1.200',name:'Volkswagen Arena',loc:'📍 Maslak',star:'★ 4.6',comments:'💬 20 · 👍 38',tags:['konser','müzik'],district:'Sarıyer'},
+      {emoji:'🎭',bg:'etk-bg',price:'₺550',name:'İstanbul Tiyatrosu',loc:'📍 Beyoğlu',star:'★ 4.8',comments:'💬 7 · 👍 16',tags:['tiyatro','sahne'],district:'Beyoğlu'}]}
+};
+
+function openCategory(catKey) {
+  var cat = catData[catKey]; if (!cat) return;
+  document.getElementById('cat-page-icon').textContent = cat.icon;
+  document.getElementById('cat-page-icon').style.background = cat.iconBg;
+  document.getElementById('cat-page-title').textContent = cat.name;
+  document.getElementById('cat-page-subtitle').textContent = cat.sub;
+  document.getElementById('cat-page-count').textContent = cat.count;
+  var feed = document.getElementById('cat-feed');
+  var html = '<div style="height:8px;"></div>';
+  cat.items.forEach(function(item) {
+    var tagsHtml = item.tags.map(function(t){return '<span class="feed-tag">'+t+'</span>';}).join('');
+    var bizKey = nameToBizKey[item.name] || 'burger_king';
+    html += '<div class="feed-card" onclick="openDetail(\''+bizKey+'\')">' +
+      '<div class="feed-img '+item.bg+'">'+item.emoji+'<div class="price-badge">'+item.price+'</div></div>' +
+      '<div class="feed-body"><div class="feed-name">'+item.name+'</div><div class="feed-loc">'+item.loc+'</div>' +
+      '<div class="feed-stars"><span class="star-val">'+item.star+'</span><span class="star-count">· '+item.comments+'</span></div>' +
+      '<div class="feed-tags">'+tagsHtml+'</div>' +
+      '<div class="feed-actions"><div class="feed-btn">🧭 Yol</div><div class="feed-btn">↗ Paylaş</div><div class="feed-btn primary" onclick="event.stopPropagation();openDetail(\''+bizKey+'\')">Detayları Gör</div></div></div></div>';
+  });
+  html += '<div style="height:24px;"></div>';
+  feed.innerHTML = html;
+  goTo('s-cat');
+}
+
+// ===== SAVED ITEMS =====
+var savedItems = [];
+
+function renderSavedPage() {
+  var feed = document.getElementById('saved-feed');
+  document.getElementById('saved-count').textContent = savedItems.length + ' kayıt';
+  document.getElementById('profile-saved-count').textContent = savedItems.length;
+  if (savedItems.length === 0) {
+    feed.innerHTML = '<div style="height:8px;"></div><div class="saved-empty"><div class="saved-empty-icon">📌</div><div class="saved-empty-title">Henüz kayıt yok</div><div class="saved-empty-sub">Trend gönderilerde sola kaydırarak beğendiğiniz fişleri kaydedin.</div></div>';
+    return;
+  }
+  var html = '<div style="height:8px;"></div>';
+  savedItems.forEach(function(item) {
+    var tagsHtml = item.tags.map(function(t){return '<span class="feed-tag">'+t+'</span>';}).join('');
+    var bizKey = nameToBizKey[item.name] || 'burger_king';
+    html += '<div class="feed-card" onclick="openDetail(\''+bizKey+'\')">' +
+      '<div class="feed-img '+item.bg+'">'+item.emoji+'<div class="price-badge">'+item.price+'</div></div>' +
+      '<div class="feed-body"><div class="feed-name">'+item.name+'</div><div class="feed-loc">'+item.loc+'</div>' +
+      '<div class="feed-stars"><span class="star-val">'+item.star+'</span><span class="star-count">· '+item.comments+'</span></div>' +
+      '<div class="feed-tags">'+tagsHtml+'</div>' +
+      '<div class="feed-actions"><div class="feed-btn">🧭 Yol</div><div class="feed-btn">↗ Paylaş</div><div class="feed-btn primary" onclick="event.stopPropagation();openDetail(\''+bizKey+'\')">Detayları Gör</div></div></div></div>';
+  });
+  html += '<div style="height:24px;"></div>';
+  feed.innerHTML = html;
+}
+
+// ===== SWIPE CARDS =====
+var swipeData = [
+  {emoji:'☕',bg:'rest-bg',price:'₺285',name:'Starbucks',loc:'📍 Kadıköy',star:'★ 4.2',comments:'💬 24 · 👍 42',tags:['kahve','kafe','fast-food']},
+  {emoji:'🛒',bg:'mkt-bg',price:'₺1.850',name:'Migros',loc:'📍 Şişli',star:'★ 4.5',comments:'💬 18 · 👍 40',tags:['market','alışveriş']},
+  {emoji:'🍔',bg:'bk-bg',price:'₺380',name:'Burger King',loc:'📍 Kadıköy',star:'★ 4.5',comments:'💬 24 · 👍 32',tags:['fast-food','burger']},
+  {emoji:'👕',bg:'shop-bg',price:'₺2.600',name:'Mavi',loc:'📍 Bağdat Cad.',star:'★ 4.3',comments:'💬 9 · 👍 18',tags:['giyim','moda']},
+  {emoji:'📱',bg:'el-bg',price:'₺84.999',name:'Apple Store',loc:'📍 Zorlu Center',star:'★ 4.7',comments:'💬 8 · 👍 22',tags:['telefon','apple']}
+];
+var swipeIndex = 0;
+var swContainer = document.getElementById('swipe-container');
+
+function renderSwipeCards() {
+  swContainer.innerHTML = '';
+  var remaining = swipeData.length - swipeIndex;
+  if (remaining <= 0) {
+    swContainer.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--sub);font-size:14px;font-weight:600;gap:8px;"><span style="font-size:32px;">✨</span>Tüm gönderileri gördünüz!<span style="font-size:12px;color:var(--blue);cursor:pointer;" onclick="swipeIndex=0;renderSwipeCards();">Tekrar Başla</span></div>';
+    return;
+  }
+  var count = Math.min(remaining, 3);
+  for (var i = count - 1; i >= 0; i--) {
+    var idx = swipeIndex + i;
+    var item = swipeData[idx];
+    var card = document.createElement('div');
+    card.className = 'swipe-card';
+    card.style.zIndex = 10 - i;
+    card.style.transform = 'scale('+(1-i*0.04)+') translateY('+(i*8)+'px)';
+    if (i > 0) card.style.pointerEvents = 'none';
+    var tagsHtml = item.tags.map(function(t){return '<span class="feed-tag">'+t+'</span>';}).join('');
+    card.innerHTML = '<div class="swipe-overlay save" id="overlay-save-'+idx+'">← KAYDET</div><div class="swipe-overlay dismiss" id="overlay-dismiss-'+idx+'">GEÇ →</div><div class="feed-img '+item.bg+'">'+item.emoji+'<div class="price-badge">'+item.price+'</div></div><div class="feed-body"><div class="feed-name">'+item.name+'</div><div class="feed-loc">'+item.loc+'</div><div class="feed-stars"><span class="star-val">'+item.star+'</span><span class="star-count">· '+item.comments+'</span></div><div class="feed-tags">'+tagsHtml+'</div></div>';
+    if (i === 0) setupSwipe(card, idx);
+    swContainer.appendChild(card);
+  }
+}
+
+function setupSwipe(card, idx) {
+  var startX=0,currentX=0,dragging=false;
+  function onStart(e){dragging=true;startX=e.type==='touchstart'?e.touches[0].clientX:e.clientX;card.style.transition='none';}
+  function onMove(e){if(!dragging)return;var x=e.type==='touchmove'?e.touches[0].clientX:e.clientX;currentX=x-startX;card.style.transform='translateX('+currentX+'px) rotate('+(currentX*0.08)+'deg)';
+    var sv=document.getElementById('overlay-save-'+idx),dm=document.getElementById('overlay-dismiss-'+idx);
+    if(currentX<-30){sv.style.opacity=Math.min(Math.abs(currentX)/100,1);dm.style.opacity=0;}
+    else if(currentX>30){dm.style.opacity=Math.min(Math.abs(currentX)/100,1);sv.style.opacity=0;}
+    else{sv.style.opacity=0;dm.style.opacity=0;}}
+  function onEnd(){if(!dragging)return;dragging=false;card.style.transition='transform .35s ease,opacity .35s ease';
+    if(currentX<-80){card.style.transform='translateX(-400px) rotate(-20deg)';card.style.opacity='0';
+      savedItems.push(swipeData[idx]);showToast('💾 Kaydedildi!');
+      setTimeout(function(){swipeIndex++;renderSwipeCards();},300);}
+    else if(currentX>80){card.style.transform='translateX(400px) rotate(20deg)';card.style.opacity='0';showToast('👋 Geçildi');
+      setTimeout(function(){swipeIndex++;renderSwipeCards();},300);}
+    else{card.style.transform='translateX(0) rotate(0)';var sv=document.getElementById('overlay-save-'+idx),dm=document.getElementById('overlay-dismiss-'+idx);if(sv)sv.style.opacity=0;if(dm)dm.style.opacity=0;}
+    currentX=0;}
+  card.addEventListener('mousedown',onStart);card.addEventListener('touchstart',onStart,{passive:true});
+  document.addEventListener('mousemove',onMove);document.addEventListener('touchmove',onMove,{passive:true});
+  document.addEventListener('mouseup',onEnd);document.addEventListener('touchend',onEnd);
+}
+
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},1500);}
+
+function toggleDarkMode(){
+  var device = document.getElementById('app');
+  var toggle = document.getElementById('dark-toggle');
+  var isDark = device.classList.toggle('dark');
+  if(isDark){toggle.classList.add('on');showToast('🌙 Karanlık mod açıldı');}
+  else{toggle.classList.remove('on');showToast('☀️ Aydınlık mod açıldı');}
+}
+
+function toggleFaq(el){
+  var a = el.querySelector('.faq-a');
+  var arrow = el.querySelector('.faq-arrow');
+  var isOpen = a.classList.contains('show');
+  // close all
+  document.querySelectorAll('.faq-a').forEach(function(x){x.classList.remove('show');});
+  document.querySelectorAll('.faq-arrow').forEach(function(x){x.classList.remove('open');});
+  if (!isOpen) { a.classList.add('show'); arrow.classList.add('open'); }
+}
+
+renderSwipeCards();
+
+// ===== CASCADING LOCATION PICKER =====
+var locStep = 0; // 0=bölge, 1=il, 2=ilçe, 3=mahalle
+var locSelection = {region:null, city:null, district:null, hood:null};
+
+var turkeyRegions = [
+  {id:'marmara',name:'Marmara Bölgesi',emoji:'🏔',desc:'11 il · Türkiye nüfusunun %30\'u'},
+  {id:'ege',name:'Ege Bölgesi',emoji:'🌊',desc:'8 il · Turizm ve tarım merkezi'},
+  {id:'akdeniz',name:'Akdeniz Bölgesi',emoji:'🌴',desc:'8 il · Sahil şeridi'},
+  {id:'icanadolu',name:'İç Anadolu Bölgesi',emoji:'🏛',desc:'7 il · Başkent bölgesi'},
+  {id:'karadeniz',name:'Karadeniz Bölgesi',emoji:'🌿',desc:'18 il · Yeşil doğa'},
+  {id:'doguanadolu',name:'Doğu Anadolu Bölgesi',emoji:'⛰',desc:'14 il · Yüksek platolar'},
+  {id:'guneydogu',name:'Güneydoğu Anadolu Bölgesi',emoji:'☀',desc:'9 il · Tarihi bölge'}
+];
+
+var turkeyCities = {
+  marmara:[
+    {id:'istanbul',name:'İstanbul',emoji:'🏙',desc:'39 ilçe · 16.5M nüfus'},
+    {id:'bursa',name:'Bursa',emoji:'🌿',desc:'17 ilçe · 3.1M nüfus'},
+    {id:'kocaeli',name:'Kocaeli',emoji:'🏭',desc:'12 ilçe · 2M nüfus'},
+    {id:'tekirdag',name:'Tekirdağ',emoji:'🌾',desc:'11 ilçe · 1.1M nüfus'},
+    {id:'balikesir',name:'Balıkesir',emoji:'🫒',desc:'20 ilçe · 1.2M nüfus'},
+    {id:'canakkale',name:'Çanakkale',emoji:'🏛',desc:'12 ilçe · 550K nüfus'},
+    {id:'edirne',name:'Edirne',emoji:'🕌',desc:'9 ilçe · 410K nüfus'},
+    {id:'sakarya',name:'Sakarya',emoji:'🌳',desc:'16 ilçe · 1M nüfus'},
+    {id:'yalova',name:'Yalova',emoji:'🌺',desc:'6 ilçe · 290K nüfus'}
+  ],
+  ege:[
+    {id:'izmir',name:'İzmir',emoji:'🌅',desc:'30 ilçe · 4.4M nüfus'},
+    {id:'aydin',name:'Aydın',emoji:'🫒',desc:'17 ilçe · 1.1M nüfus'},
+    {id:'denizli',name:'Denizli',emoji:'🏔',desc:'19 ilçe · 1M nüfus'},
+    {id:'manisa',name:'Manisa',emoji:'🍇',desc:'17 ilçe · 1.4M nüfus'},
+    {id:'mugla',name:'Muğla',emoji:'⛵',desc:'13 ilçe · 1M nüfus'},
+    {id:'kutahya',name:'Kütahya',emoji:'🏺',desc:'13 ilçe · 580K nüfus'},
+    {id:'usak',name:'Uşak',emoji:'🧶',desc:'6 ilçe · 370K nüfus'},
+    {id:'afyon',name:'Afyonkarahisar',emoji:'♨',desc:'18 ilçe · 740K nüfus'}
+  ],
+  akdeniz:[
+    {id:'antalya',name:'Antalya',emoji:'🌴',desc:'19 ilçe · 2.6M nüfus'},
+    {id:'mersin',name:'Mersin',emoji:'🍋',desc:'13 ilçe · 1.9M nüfus'},
+    {id:'adana',name:'Adana',emoji:'🌶',desc:'15 ilçe · 2.2M nüfus'},
+    {id:'hatay',name:'Hatay',emoji:'🕌',desc:'15 ilçe · 1.6M nüfus'},
+    {id:'kahramanmaras',name:'Kahramanmaraş',emoji:'🍦',desc:'11 ilçe · 1.1M nüfus'},
+    {id:'osmaniye',name:'Osmaniye',emoji:'🏔',desc:'7 ilçe · 540K nüfus'},
+    {id:'isparta',name:'Isparta',emoji:'🌹',desc:'13 ilçe · 440K nüfus'},
+    {id:'burdur',name:'Burdur',emoji:'🏞',desc:'11 ilçe · 270K nüfus'}
+  ],
+  icanadolu:[
+    {id:'ankara',name:'Ankara',emoji:'🏛',desc:'25 ilçe · 5.7M nüfus'},
+    {id:'konya',name:'Konya',emoji:'🌾',desc:'31 ilçe · 2.3M nüfus'},
+    {id:'kayseri',name:'Kayseri',emoji:'🏔',desc:'16 ilçe · 1.4M nüfus'},
+    {id:'eskisehir',name:'Eskişehir',emoji:'🎓',desc:'14 ilçe · 900K nüfus'},
+    {id:'sivas',name:'Sivas',emoji:'⛰',desc:'17 ilçe · 640K nüfus'},
+    {id:'aksaray',name:'Aksaray',emoji:'🏜',desc:'8 ilçe · 420K nüfus'},
+    {id:'kirsehir',name:'Kırşehir',emoji:'🎵',desc:'7 ilçe · 240K nüfus'}
+  ],
+  karadeniz:[
+    {id:'trabzon',name:'Trabzon',emoji:'🌿',desc:'18 ilçe · 810K nüfus'},
+    {id:'samsun',name:'Samsun',emoji:'🌊',desc:'17 ilçe · 1.3M nüfus'},
+    {id:'ordu',name:'Ordu',emoji:'🌰',desc:'19 ilçe · 750K nüfus'},
+    {id:'rize',name:'Rize',emoji:'🍵',desc:'12 ilçe · 350K nüfus'},
+    {id:'zonguldak',name:'Zonguldak',emoji:'⛏',desc:'8 ilçe · 600K nüfus'},
+    {id:'artvin',name:'Artvin',emoji:'🏞',desc:'8 ilçe · 170K nüfus'},
+    {id:'giresun',name:'Giresun',emoji:'🌰',desc:'16 ilçe · 450K nüfus'}
+  ],
+  doguanadolu:[
+    {id:'erzurum',name:'Erzurum',emoji:'❄',desc:'20 ilçe · 760K nüfus'},
+    {id:'van',name:'Van',emoji:'🐱',desc:'13 ilçe · 1.1M nüfus'},
+    {id:'malatya',name:'Malatya',emoji:'🍑',desc:'13 ilçe · 800K nüfus'},
+    {id:'elazig',name:'Elazığ',emoji:'🏔',desc:'11 ilçe · 590K nüfus'},
+    {id:'kars',name:'Kars',emoji:'🧀',desc:'8 ilçe · 290K nüfus'},
+    {id:'agri',name:'Ağrı',emoji:'⛰',desc:'8 ilçe · 540K nüfus'}
+  ],
+  guneydogu:[
+    {id:'gaziantep',name:'Gaziantep',emoji:'🥙',desc:'9 ilçe · 2.1M nüfus'},
+    {id:'sanliurfa',name:'Şanlıurfa',emoji:'🕌',desc:'13 ilçe · 2.1M nüfus'},
+    {id:'diyarbakir',name:'Diyarbakır',emoji:'🏰',desc:'17 ilçe · 1.8M nüfus'},
+    {id:'mardin',name:'Mardin',emoji:'🏛',desc:'9 ilçe · 850K nüfus'},
+    {id:'batman',name:'Batman',emoji:'🌉',desc:'6 ilçe · 620K nüfus'},
+    {id:'siirt',name:'Siirt',emoji:'🏔',desc:'7 ilçe · 330K nüfus'}
+  ]
+};
+
+var turkeyDistricts = {
+  istanbul:[
+    {id:'kadikoy',name:'Kadıköy',desc:'Anadolu Yakası · Sahil'},
+    {id:'besiktas',name:'Beşiktaş',desc:'Avrupa Yakası · Merkez'},
+    {id:'sisli',name:'Şişli',desc:'Avrupa Yakası · İş merkezi'},
+    {id:'uskudar',name:'Üsküdar',desc:'Anadolu Yakası · Tarihi'},
+    {id:'bakirkoy',name:'Bakırköy',desc:'Avrupa Yakası · Sahil'},
+    {id:'fatih',name:'Fatih',desc:'Avrupa Yakası · Tarihi Yarımada'},
+    {id:'beyoglu',name:'Beyoğlu',desc:'Avrupa Yakası · Kültür merkezi'},
+    {id:'sariyer',name:'Sarıyer',desc:'Avrupa Yakası · Boğaz'},
+    {id:'maltepe',name:'Maltepe',desc:'Anadolu Yakası · Sahil'},
+    {id:'atasehir',name:'Ataşehir',desc:'Anadolu Yakası · Finans merkezi'},
+    {id:'pendik',name:'Pendik',desc:'Anadolu Yakası · Havalimanı'},
+    {id:'kartal',name:'Kartal',desc:'Anadolu Yakası · Gelişen bölge'},
+    {id:'umraniye',name:'Ümraniye',desc:'Anadolu Yakası · Ticaret'},
+    {id:'bahcelievler',name:'Bahçelievler',desc:'Avrupa Yakası · Konut'},
+    {id:'avcilar',name:'Avcılar',desc:'Avrupa Yakası · Üniversite'},
+    {id:'esenyurt',name:'Esenyurt',desc:'Avrupa Yakası · Yoğun nüfus'},
+    {id:'beylikduzu',name:'Beylikdüzü',desc:'Avrupa Yakası · Yeni yerleşim'},
+    {id:'basaksehir',name:'Başakşehir',desc:'Avrupa Yakası · Şehir hastanesi'},
+    {id:'kagithane',name:'Kağıthane',desc:'Avrupa Yakası · Dönüşüm'},
+    {id:'zeytinburnu',name:'Zeytinburnu',desc:'Avrupa Yakası · Tekstil'},
+    {id:'beykoz',name:'Beykoz',desc:'Anadolu Yakası · Orman & Boğaz'}
+  ],
+  ankara:[
+    {id:'cankaya',name:'Çankaya',desc:'Merkez · Başkent kalbi'},
+    {id:'kecioren',name:'Keçiören',desc:'Kuzey · Yoğun nüfus'},
+    {id:'mamak',name:'Mamak',desc:'Doğu · Gelişen bölge'},
+    {id:'yenimahalle',name:'Yenimahalle',desc:'Batı · Konut bölgesi'},
+    {id:'etimesgut',name:'Etimesgut',desc:'Batı · Havalimanı yakını'},
+    {id:'sincan',name:'Sincan',desc:'Batı · Sanayi'},
+    {id:'pursaklar',name:'Pursaklar',desc:'Kuzey · Yeni yerleşim'},
+    {id:'altindag',name:'Altındağ',desc:'Merkez · Tarihi'}
+  ],
+  izmir:[
+    {id:'konak',name:'Konak',desc:'Merkez · Alsancak & Kordon'},
+    {id:'bornova',name:'Bornova',desc:'Kuzey · Üniversite'},
+    {id:'karsiyaka',name:'Karşıyaka',desc:'Kuzey · Sahil'},
+    {id:'buca',name:'Buca',desc:'Güney · Yoğun nüfus'},
+    {id:'bayrakli',name:'Bayraklı',desc:'Merkez · İş dünyası'},
+    {id:'cigli',name:'Çiğli',desc:'Kuzey · Sanayi & konut'},
+    {id:'karabaglar',name:'Karabağlar',desc:'Güney · Büyük ilçe'},
+    {id:'gaziemir',name:'Gaziemir',desc:'Güney · Havalimanı yakını'},
+    {id:'narlidere',name:'Narlıdere',desc:'Batı · Sahil & yeşil'},
+    {id:'cesme',name:'Çeşme',desc:'Batı · Turizm'}
+  ],
+  antalya:[
+    {id:'muratpasa',name:'Muratpaşa',desc:'Merkez · Kaleiçi'},
+    {id:'konyaalti',name:'Konyaaltı',desc:'Batı · Sahil & plaj'},
+    {id:'kepez',name:'Kepez',desc:'Kuzey · Yoğun nüfus'},
+    {id:'aksu_ant',name:'Aksu',desc:'Doğu · Havalimanı yakını'},
+    {id:'dosemealti',name:'Döşemealtı',desc:'Kuzey · Doğa'},
+    {id:'alanya',name:'Alanya',desc:'Doğu · Turizm merkezi'},
+    {id:'manavgat',name:'Manavgat',desc:'Doğu · Şelale & turizm'},
+    {id:'kas',name:'Kaş',desc:'Batı · Deniz & doğa'},
+    {id:'kemer',name:'Kemer',desc:'Batı · Resort bölgesi'}
+  ],
+  bursa:[
+    {id:'osmangazi',name:'Osmangazi',desc:'Merkez · Tarihi'},
+    {id:'nilufer',name:'Nilüfer',desc:'Batı · Modern yerleşim'},
+    {id:'yildirim',name:'Yıldırım',desc:'Doğu · Yoğun nüfus'},
+    {id:'gursu',name:'Gürsu',desc:'Doğu · Gelişen'},
+    {id:'kestel',name:'Kestel',desc:'Doğu · Sanayi'},
+    {id:'mudanya',name:'Mudanya',desc:'Kuzey · Sahil'},
+    {id:'gemlik',name:'Gemlik',desc:'Kuzey · Liman'},
+    {id:'inegol',name:'İnegöl',desc:'Güney · Mobilya başkenti'}
+  ],
+  gaziantep:[
+    {id:'sahinbey',name:'Şahinbey',desc:'Güney · Merkez'},
+    {id:'sehitkamil',name:'Şehitkâmil',desc:'Kuzey · Modern'},
+    {id:'nizip',name:'Nizip',desc:'Doğu · Fıstık diyarı'},
+    {id:'islahiye',name:'İslahiye',desc:'Batı · Geçit noktası'}
+  ],
+  trabzon:[
+    {id:'ortahisar',name:'Ortahisar',desc:'Merkez · Şehir merkezi'},
+    {id:'akcaabat',name:'Akçaabat',desc:'Batı · Köfte & sahil'},
+    {id:'arakli',name:'Araklı',desc:'Doğu · Kıyı ilçe'},
+    {id:'of',name:'Of',desc:'Doğu · Çay bölgesi'},
+    {id:'macka',name:'Maçka',desc:'Güney · Sümela'}
+  ],
+  konya:[
+    {id:'selcuklu',name:'Selçuklu',desc:'Kuzey · Modern merkez'},
+    {id:'meram',name:'Meram',desc:'Güney · Yeşil alan'},
+    {id:'karatay',name:'Karatay',desc:'Doğu · Tarihi'}
+  ],
+  adana:[
+    {id:'seyhan',name:'Seyhan',desc:'Güney · Merkez'},
+    {id:'cukurova',name:'Çukurova',desc:'Batı · Yeni gelişim'},
+    {id:'yuregir',name:'Yüreğir',desc:'Doğu · Yoğun nüfus'},
+    {id:'saricam',name:'Sarıçam',desc:'Kuzey · Sanayi'}
+  ],
+  kocaeli:[
+    {id:'izmit',name:'İzmit',desc:'Merkez · Sanayi başkenti'},
+    {id:'gebze',name:'Gebze',desc:'Batı · Teknoloji & sanayi'},
+    {id:'darica',name:'Darıca',desc:'Batı · Sahil'},
+    {id:'korfez',name:'Körfez',desc:'Doğu · Rafineri'}
+  ]
+};
+
+var turkeyHoods = {
+  kadikoy:['Moda','Caferağa','Fenerbahçe','Acıbadem','Koşuyolu','Göztepe','Bostancı','Suadiye','Caddebostan','Erenköy','Rasimpaşa','Osmanağa','Hasanpaşa','Fikirtepe'],
+  besiktas:['Levent','Etiler','Bebek','Ortaköy','Arnavutköy','Kuruçeşme','Akat','Konaklar','Gayrettepe','Yıldız','Sinanpaşa','Abbasağa'],
+  sisli:['Nişantaşı','Osmanbey','Teşvikiye','Mecidiyeköy','Esentepe','Halaskargazi','Bomonti','Kuştepe','Feriköy','Harbiye'],
+  uskudar:['Çengelköy','Kuzguncuk','Beylerbeyi','Kandilli','Altunizade','Acıbadem','Bağlarbaşı','Mimar Sinan','İcadiye','Selimiye'],
+  bakirkoy:['Ataköy','Yeşilköy','Florya','Şenlikköy','Kartaltepe','Cevizlik','Zuhuratbaba','Osmaniye'],
+  fatih:['Sultanahmet','Eminönü','Aksaray','Balat','Fener','Çarşamba','Vefa','Kumkapı','Laleli','Beyazıt','Cibali'],
+  beyoglu:['Cihangir','Galata','Karaköy','Taksim','Asmalımescit','Çukurcuma','Firuzağa','Tarlabaşı','Dolapdere','Hasköy'],
+  sariyer:['Rumelihisarı','İstinye','Tarabya','Büyükdere','Emirgan','Baltalimanı','Maslak','Ayazağa','Huzur'],
+  maltepe:['Altıntepe','Cevizli','Bağlarbaşı','Küçükyalı','İdealtepe','Zümrütevler','Feyzullah','Girne'],
+  atasehir:['Barbaros','İçerenköy','Küçükbakkalköy','Yeni Çamlıca','Ferhatpaşa','Kayışdağı','Mustafa Kemal','Esatpaşa'],
+  cankaya:['Kızılay','Bahçelievler','Çayyolu','Ümitköy','Gaziosmanpaşa','Ayrancı','Dikmen','Öveçler','Balgat','Kavaklıdere','Tunalı'],
+  kecioren:['Etlik','Ovacık','Kuşcağız','Esertepe','Kalaba','Ayvansaray','Bağlum','Kanuni'],
+  konak:['Alsancak','Pasaport','Göztepe','Güzelyalı','Hatay','Basmane','Kemeraltı','Konak Merkez','Kahramanlar'],
+  karsiyaka:['Bostanlı','Mavişehir','Çiğli','Atakent','Donanmacı','Tersane','Alaybey','Demirköprü'],
+  bornova:['Erzene','Kazımdirik','Evka-3','Ergene','Kemalpaşa','Mevlana','Birlik'],
+  muratpasa:['Kaleiçi','Bahçelievler','Fener','Memurevleri','Güzeloba','Şirinyalı','Yeşildere','Meltem'],
+  konyaalti:['Liman','Hurma','Sarısu','Uncalı','Arapsuyu','Çağlayan','Bahtılı'],
+  osmangazi:['Heykel','Çekirge','Kükürtlü','Soğanlı','Hamitler','Demirtaş'],
+  nilufer:['Fethiye','Özlüce','Beşevler','Ataevler','Görükle','İhsaniye','Ertuğrul'],
+  sahinbey:['Kolejtepe','Karataş','Bey','Şehirgösteren','Düztepe','Mücahitler'],
+  sehitkamil:['Batıkent','İbrahimli','Karşıyaka','Beylerbeyi','Mavikent','Güneykent'],
+  ortahisar:['Merkez','Boztepe','Pelitli','Yalıncak','Erdoğdu','Çömlekçi','İskenderpaşa'],
+  selcuklu:['Bosna Hersek','Yazır','Musalla','Sille','Tepekent','Horozluhan'],
+  izmit:['Merkez','Yahyakaptan','Cedit','Kozluk','Yenişehir','Gündoğdu']
+};
+
+var locStepNames = ['Bölge','İl','İlçe','Mahalle'];
+var locStepTitles = ['Bölge Seçin','İl Seçin','İlçe Seçin','Mahalle Seçin'];
+var locStepDescs = ['Fiyatları görmek istediğiniz bölgeyi belirleyin','Bölgedeki illerden birini seçin','İldeki ilçelerden birini seçin','İlçedeki mahallenizi seçin'];
+
+function renderLocStep(){
+  var h = document.getElementById('loc-title');
+  var sub = document.getElementById('loc-subtitle');
+  var bl = document.getElementById('loc-back-label');
+  var bc = document.getElementById('loc-breadcrumb');
+  var scroll = document.getElementById('loc-scroll');
+
+  h.textContent = locStepTitles[locStep];
+  sub.textContent = locStepDescs[locStep];
+  bl.textContent = locStep === 0 ? 'Geri' : locStepNames[locStep - 1];
+
+  // Breadcrumb
+  var bcHtml = '';
+  if(locStep > 0 && locSelection.region){
+    bcHtml += '<span class="loc-crumb" onclick="locJumpTo(0)">'+locSelection.region.name+'</span>';
+  }
+  if(locStep > 1 && locSelection.city){
+    bcHtml += '<span class="loc-crumb-arrow">›</span><span class="loc-crumb" onclick="locJumpTo(1)">'+locSelection.city.name+'</span>';
+  }
+  if(locStep > 2 && locSelection.district){
+    bcHtml += '<span class="loc-crumb-arrow">›</span><span class="loc-crumb" onclick="locJumpTo(2)">'+locSelection.district.name+'</span>';
+  }
+  bc.innerHTML = bcHtml;
+
+  // Step bar
+  var stepBar = '<div class="loc-step-bar">';
+  for(var i=0;i<4;i++){
+    var cls = i < locStep ? 'done' : (i === locStep ? 'active' : '');
+    stepBar += '<div class="loc-step '+cls+'"></div>';
+  }
+  stepBar += '</div><div class="loc-step-labels">';
+  for(var i=0;i<4;i++){
+    var cls = i < locStep ? 'done' : (i === locStep ? 'active' : '');
+    stepBar += '<div class="loc-step-label '+cls+'">'+locStepNames[i]+'</div>';
+  }
+  stepBar += '</div>';
+
+  // Content
+  var content = '';
+  var iconClass = ['region','city','district','hood'][locStep];
+
+  if(locStep === 0){
+    // Regions
+    content = renderLocOptions(turkeyRegions.map(function(r){
+      return {id:r.id, name:r.name, emoji:r.emoji, desc:r.desc, iconClass:'region'};
+    }), 'pickRegion');
+  } else if(locStep === 1){
+    // Cities
+    var cities = turkeyCities[locSelection.region.id] || [];
+    content = renderLocOptions(cities.map(function(c){
+      return {id:c.id, name:c.name, emoji:c.emoji, desc:c.desc, iconClass:'city'};
+    }), 'pickCity');
+  } else if(locStep === 2){
+    // Districts
+    var districts = turkeyDistricts[locSelection.city.id] || [];
+    if(districts.length === 0){
+      content = '<div style="padding:40px 20px;text-align:center;color:var(--sub);"><div style="font-size:32px;margin-bottom:8px;">🏗</div><div style="font-size:14px;font-weight:600;">Bu il için ilçe verisi henüz eklenmedi</div><div style="font-size:12px;margin-top:4px;">İl genelini seçerek devam edebilirsiniz</div><div style="margin-top:16px;"><button onclick="finishLocPick(locSelection.city.name)" style="padding:12px 24px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">'+locSelection.city.name+' genelini seç</button></div></div>';
+    } else {
+      content = renderLocOptions(districts.map(function(d){
+        return {id:d.id, name:d.name, emoji:'📍', desc:d.desc, iconClass:'district'};
+      }), 'pickDistrict');
+    }
+  } else if(locStep === 3){
+    // Neighborhoods
+    var hoods = turkeyHoods[locSelection.district.id] || [];
+    if(hoods.length === 0){
+      content = '<div style="padding:40px 20px;text-align:center;color:var(--sub);"><div style="font-size:32px;margin-bottom:8px;">🏗</div><div style="font-size:14px;font-weight:600;">Bu ilçe için mahalle verisi henüz eklenmedi</div><div style="font-size:12px;margin-top:4px;">İlçe genelini seçerek devam edebilirsiniz</div><div style="margin-top:16px;"><button onclick="finishLocPick(locSelection.district.name+\', \'+locSelection.city.name)" style="padding:12px 24px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;">'+locSelection.district.name+' genelini seç</button></div></div>';
+    } else {
+      content = renderLocOptions(hoods.map(function(h){
+        return {id:h, name:h+' Mah.', emoji:'🏘', desc:locSelection.district.name+', '+locSelection.city.name, iconClass:'hood'};
+      }), 'pickHood');
+    }
+  }
+
+  scroll.innerHTML = stepBar + '<div class="loc-section">' + content + '</div>';
+  scroll.scrollTop = 0;
+}
+
+function renderLocOptions(items, handler){
+  var html = '';
+  items.forEach(function(item){
+    html += '<div class="loc-option" onclick="'+handler+'(\''+item.id.replace(/'/g,"\\'")+'\')">';
+    html += '<div class="loc-option-icon '+item.iconClass+'">'+item.emoji+'</div>';
+    html += '<div class="loc-option-info"><div class="loc-option-name">'+item.name+'</div><div class="loc-option-desc">'+item.desc+'</div></div>';
+    html += '<svg viewBox="0 0 20 20" fill="none" width="16" height="16" style="flex-shrink:0;color:var(--sub);"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    html += '</div>';
+  });
+  return html;
+}
+
+function pickRegion(id){
+  var r = turkeyRegions.find(function(x){return x.id===id;});
+  locSelection.region = r;
+  locSelection.city = null;
+  locSelection.district = null;
+  locSelection.hood = null;
+  locStep = 1;
+  renderLocStep();
+}
+
+function pickCity(id){
+  var cities = turkeyCities[locSelection.region.id] || [];
+  var c = cities.find(function(x){return x.id===id;});
+  locSelection.city = c;
+  locSelection.district = null;
+  locSelection.hood = null;
+  locStep = 2;
+  renderLocStep();
+}
+
+function pickDistrict(id){
+  var districts = turkeyDistricts[locSelection.city.id] || [];
+  var d = districts.find(function(x){return x.id===id;});
+  locSelection.district = d;
+  locSelection.hood = null;
+  locStep = 3;
+  renderLocStep();
+}
+
+function pickHood(name){
+  locSelection.hood = name;
+  var label = name + ' Mah., ' + locSelection.district.name;
+  finishLocPick(label);
+}
+
+function finishLocPick(label){
+  document.getElementById('current-location').textContent = label;
+  showToast('📍 ' + label);
+  locStep = 0;
+  locSelection = {region:null, city:null, district:null, hood:null};
+  goBack();
+}
+
+function locGoBack(){
+  if(locStep === 0){
+    goBack();
+  } else {
+    locStep--;
+    if(locStep === 0){ locSelection.region = null; }
+    else if(locStep === 1){ locSelection.city = null; }
+    else if(locStep === 2){ locSelection.district = null; }
+    renderLocStep();
+  }
+}
+
+function locJumpTo(step){
+  locStep = step;
+  if(step <= 0){ locSelection.region = null; locSelection.city = null; locSelection.district = null; locSelection.hood = null; }
+  else if(step <= 1){ locSelection.city = null; locSelection.district = null; locSelection.hood = null; }
+  else if(step <= 2){ locSelection.district = null; locSelection.hood = null; }
+  renderLocStep();
+}
+
+// Initialize location screen when navigated to
+var origGoTo = goTo;
+goTo = function(id){
+  origGoTo(id);
+  if(id === 's-location'){
+    locStep = 0;
+    locSelection = {region:null, city:null, district:null, hood:null};
+    renderLocStep();
+  }
+};
+
+// ===== PRODUCT SEARCH =====
+var productDB = [
+  {name:'Süt (1L)',cat:'market',store:'Migros',district:'Şişli',price:42,priceStr:'₺42',bizKey:'migros'},
+  {name:'Süt (1L)',cat:'market',store:'BİM',district:'Üsküdar',price:34,priceStr:'₺34',bizKey:'bim'},
+  {name:'Süt (1L)',cat:'market',store:'CarrefourSA',district:'Beşiktaş',price:39,priceStr:'₺39',bizKey:'carrefoursa'},
+  {name:'Yoğurt (1kg)',cat:'market',store:'Migros',district:'Şişli',price:65,priceStr:'₺65',bizKey:'migros'},
+  {name:'Yoğurt (1kg)',cat:'market',store:'BİM',district:'Üsküdar',price:48,priceStr:'₺48',bizKey:'bim'},
+  {name:'Yoğurt (1kg)',cat:'market',store:'CarrefourSA',district:'Beşiktaş',price:58,priceStr:'₺58',bizKey:'carrefoursa'},
+  {name:'Beyaz Peynir (600g)',cat:'market',store:'Migros',district:'Şişli',price:120,priceStr:'₺120',bizKey:'migros'},
+  {name:'Beyaz Peynir (600g)',cat:'market',store:'BİM',district:'Üsküdar',price:89,priceStr:'₺89',bizKey:'bim'},
+  {name:'Beyaz Peynir (600g)',cat:'market',store:'CarrefourSA',district:'Beşiktaş',price:110,priceStr:'₺110',bizKey:'carrefoursa'},
+  {name:'Tavuk Göğsü (kg)',cat:'market',store:'Migros',district:'Şişli',price:185,priceStr:'₺185',bizKey:'migros'},
+  {name:'Tavuk Göğsü (kg)',cat:'market',store:'BİM',district:'Üsküdar',price:155,priceStr:'₺155',bizKey:'bim'},
+  {name:'Kıyma (kg)',cat:'market',store:'Migros',district:'Şişli',price:420,priceStr:'₺420',bizKey:'migros'},
+  {name:'Kıyma (kg)',cat:'market',store:'CarrefourSA',district:'Beşiktaş',price:395,priceStr:'₺395',bizKey:'carrefoursa'},
+  {name:'Ekmek',cat:'market',store:'BİM',district:'Üsküdar',price:12,priceStr:'₺12',bizKey:'bim'},
+  {name:'Ekmek',cat:'market',store:'Migros',district:'Şişli',price:14,priceStr:'₺14',bizKey:'migros'},
+  {name:'Tuvalet Kağıdı (32li)',cat:'market',store:'BİM',district:'Üsküdar',price:175,priceStr:'₺175',bizKey:'bim'},
+  {name:'Tuvalet Kağıdı (32li)',cat:'market',store:'Migros',district:'Şişli',price:210,priceStr:'₺210',bizKey:'migros'},
+  {name:'Zeytinyağı (1L)',cat:'market',store:'Migros',district:'Şişli',price:320,priceStr:'₺320',bizKey:'migros'},
+  {name:'Zeytinyağı (1L)',cat:'market',store:'BİM',district:'Üsküdar',price:260,priceStr:'₺260',bizKey:'bim'},
+  {name:'Cafe Latte',cat:'kahve',store:'Cafe Nero',district:'Şişli',price:150,priceStr:'₺150',bizKey:'cafe_nero'},
+  {name:'Cafe Latte',cat:'kahve',store:'Starbucks',district:'Kadıköy',price:165,priceStr:'₺165',bizKey:'starbucks'},
+  {name:'Caramel Macchiato',cat:'kahve',store:'Starbucks',district:'Kadıköy',price:185,priceStr:'₺185',bizKey:'starbucks'},
+  {name:'Kahvaltı Tabağı',cat:'kahve',store:'Cafe Nero',district:'Şişli',price:295,priceStr:'₺295',bizKey:'cafe_nero'},
+  {name:'Whopper Menü',cat:'fast-food',store:'Burger King',district:'Kadıköy',price:189.90,priceStr:'₺189,90',bizKey:'burger_king'},
+  {name:'King Chicken Menü',cat:'fast-food',store:'Burger King',district:'Kadıköy',price:169.90,priceStr:'₺169,90',bizKey:'burger_king'},
+  {name:'Slim Fit Jean',cat:'giyim',store:'Mavi',district:'Kadıköy',price:1499,priceStr:'₺1.499',bizKey:'mavi'},
+  {name:'Basic T-Shirt',cat:'giyim',store:'Mavi',district:'Kadıköy',price:424.50,priceStr:'₺424,50',bizKey:'mavi'},
+  {name:'Air Max 90',cat:'giyim',store:'Nike Store',district:'Nişantaşı',price:5199,priceStr:'₺5.199',bizKey:'nike'},
+  {name:'iPhone 16 Pro Max',cat:'elektronik',store:'Apple Store',district:'Beşiktaş',price:79999,priceStr:'₺79.999',bizKey:'apple_store'},
+  {name:'Lenovo IdeaPad 5',cat:'elektronik',store:'MediaMarkt',district:'Bayrampaşa',price:28999,priceStr:'₺28.999',bizKey:'mediamarkt'},
+  {name:'Laptop Çantası',cat:'elektronik',store:'MediaMarkt',district:'Bayrampaşa',price:1599,priceStr:'₺1.599',bizKey:'mediamarkt'},
+  {name:'Saç Kesimi (Erkek)',cat:'hizmet',store:'Bay Kuaför',district:'Kadıköy',price:400,priceStr:'₺400',bizKey:'bay_kuafor'},
+  {name:'Sakal Düzeltme',cat:'hizmet',store:'Bay Kuaför',district:'Kadıköy',price:180,priceStr:'₺180',bizKey:'bay_kuafor'},
+  {name:'Yağ Değişimi',cat:'hizmet',store:'Oto Servis Ali',district:'Maltepe',price:850,priceStr:'₺850',bizKey:'oto_servis'},
+  {name:'Konser Bileti',cat:'etkinlik',store:'Volkswagen Arena',district:'Sarıyer',price:950,priceStr:'₺950',bizKey:'vw_arena'},
+  {name:'Tiyatro Bileti',cat:'etkinlik',store:'İstanbul Tiyatrosu',district:'Beyoğlu',price:225,priceStr:'₺225',bizKey:'ist_tiyatro'},
+  {name:'Ottoman Steak',cat:'restoran',store:'Nusret',district:'Beşiktaş',price:4200,priceStr:'₺4.200',bizKey:'nusret'},
+  {name:'Kaburga',cat:'restoran',store:'Nusret',district:'Beşiktaş',price:2400,priceStr:'₺2.400',bizKey:'nusret'},
+  {name:'Dondurma (3 Top)',cat:'restoran',store:'Muqa Dondurma',district:'Çeşme',price:190,priceStr:'₺190',bizKey:'muqa'},
+  {name:'Waffle',cat:'restoran',store:'Muqa Dondurma',district:'Çeşme',price:140,priceStr:'₺140',bizKey:'muqa'}
+];
+
+function performSearch(query) {
+  var q = query.toLowerCase().trim();
+  var resultsDiv = document.getElementById('search-results');
+  var sugDiv = document.getElementById('search-suggestions');
+  if (q.length < 2) {
+    sugDiv.style.display = 'block';
+    var old = resultsDiv.querySelectorAll('.search-result-item,.search-no-result,.search-results-header');
+    old.forEach(function(el){el.remove();});
+    return;
+  }
+  sugDiv.style.display = 'none';
+  var results = productDB.filter(function(p){
+    return p.name.toLowerCase().indexOf(q) !== -1 || p.store.toLowerCase().indexOf(q) !== -1 || p.cat.toLowerCase().indexOf(q) !== -1;
+  });
+  results.sort(function(a,b){return a.price - b.price;});
+  var old = resultsDiv.querySelectorAll('.search-result-item,.search-no-result,.search-results-header');
+  old.forEach(function(el){el.remove();});
+  if (results.length === 0) {
+    resultsDiv.innerHTML += '<div class="search-no-result">😔 "'+query+'" için sonuç bulunamadı.<br><span style="font-size:11px;">Farklı bir kelime deneyin.</span></div>';
+    return;
+  }
+  var headerHtml = '<div class="search-results-header" style="padding:12px 16px 6px;font-size:12px;font-weight:700;color:var(--sub);">'+results.length+' sonuç · En düşük fiyattan sıralı</div>';
+  resultsDiv.innerHTML += headerHtml;
+  results.forEach(function(r){
+    var iconBg = r.cat==='market'?'#D1FAE5':r.cat==='kahve'?'#FEF3C7':r.cat==='fast-food'?'#FEE2E2':r.cat==='giyim'?'#DBEAFE':r.cat==='elektronik'?'#EDE9FE':r.cat==='hizmet'?'#FCE7F3':r.cat==='etkinlik'?'#FEE2E2':'#F1F5F9';
+    var emoji = r.cat==='market'?'🛒':r.cat==='kahve'?'☕':r.cat==='fast-food'?'🍔':r.cat==='giyim'?'👕':r.cat==='elektronik'?'📱':r.cat==='hizmet'?'🔧':r.cat==='etkinlik'?'🎭':'🏪';
+    resultsDiv.innerHTML += '<div class="search-result-item" onclick="openDetail(\''+r.bizKey+'\')"><div class="search-result-icon" style="background:'+iconBg+';">'+emoji+'</div><div class="search-result-info"><div class="search-result-name">'+r.name+'</div><div class="search-result-detail">📍 '+r.district+' · '+r.cat+'</div></div><div><div class="search-result-price">'+r.priceStr+'</div><div class="search-result-store">'+r.store+'</div></div></div>';
+  });
+}
+
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  performSearch('');
+}
+// ===== FİŞ FOTOĞRAF ÖNİZLEME =====
+function previewReceipt(input) {
+  if (input.files && input.files[0]) {
+    var file = input.files[0];
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Dosya 5MB\'dan küçük olmalı.');
+      input.value = '';
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = document.getElementById('receipt-preview-img');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.getElementById('upload-main').textContent = file.name;
+      document.getElementById('upload-cta').textContent = '✅ Fotoğraf seçildi — değiştir';
+      document.getElementById('upload-icon').textContent = '✅';
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// ===== FİŞ GÖNDERME =====
+var selectedCategory = 'restoran';
+document.querySelectorAll('.cat-chip').forEach(function(chip) {
+  chip.addEventListener('click', function() {
+    document.querySelectorAll('.cat-chip').forEach(function(c){ c.classList.remove('active'); });
+    this.classList.add('active');
+    selectedCategory = this.textContent.trim().split(' ').pop().toLowerCase();
+  });
+});
+
+function submitReceipt() {
+  var fileInput = document.getElementById('receipt-file');
+  var store = document.getElementById('share-store').value.trim();
+  var name = document.getElementById('share-name').value.trim();
+  var price = document.getElementById('share-price').value;
+  var note = document.getElementById('share-note').value.trim();
+  var kvkk = document.querySelector('.kvkk-checkbox').classList.contains('checked');
+
+  // Doğrulama
+  if (!fileInput.files || !fileInput.files[0]) { alert('Lütfen fiş fotoğrafı seçin.'); return; }
+  if (!store) { alert('Lütfen işletme adını girin.'); return; }
+  if (!name) { alert('Lütfen adınızı girin.'); return; }
+  if (!kvkk) { alert('Lütfen KVKK metnini onaylayın.'); return; }
+
+  var btn = document.getElementById('submit-receipt-btn');
+  btn.textContent = 'Yükleniyor...';
+  btn.disabled = true;
+
+  var locText = document.getElementById('current-location').textContent;
+  var parts = locText.split(',');
+  var district = parts[0] ? parts[0].trim() : '';
+  var city = parts[1] ? parts[1].trim() : '';
+
+  if (typeof window.uploadReceipt === 'function') {
+    window.uploadReceipt(fileInput.files[0], {
+      storeName: store,
+      category: selectedCategory,
+      district: district,
+      city: city,
+      totalPrice: parseFloat(price) || 0,
+      note: note
+    }).then(function(id) {
+      btn.textContent = 'Fiş Paylaş →';
+      btn.disabled = false;
+      if (id) {
+        // Formu sıfırla
+        fileInput.value = '';
+        document.getElementById('receipt-preview-img').style.display = 'none';
+        document.getElementById('upload-main').textContent = 'Fiş fotoğrafını çekin veya seçin';
+        document.getElementById('upload-cta').textContent = '📸 Fotoğraf Çek / Dosya Seç';
+        document.getElementById('upload-icon').textContent = '🖼';
+        document.getElementById('share-store').value = '';
+        document.getElementById('share-price').value = '';
+        document.getElementById('share-note').value = '';
+        document.getElementById('share-name').value = '';
+      }
+    });
+  } else {
+    alert('Firebase bağlantısı henüz hazır değil. Birkaç saniye bekleyip tekrar deneyin.');
+    btn.textContent = 'Fiş Paylaş →';
+    btn.disabled = false;
+  }
+}
+
+// KVKK checkbox tıklama
+document.querySelector('.kvkk-checkbox').addEventListener('click', function() {
+  this.classList.toggle('checked');
+  this.textContent = this.classList.contains('checked') ? '✓' : '';
+  this.style.background = this.classList.contains('checked') ? 'var(--blue)' : '';
+  this.style.color = this.classList.contains('checked') ? '#fff' : '';
+});
+
+// ===== SERVICE WORKER KAYDI =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(reg) { console.log('SW registered:', reg.scope); })
+      .catch(function(err) { console.log('SW failed:', err); });
+  });
+}
+
+// ===== PWA INSTALL PROMPT =====
+var deferredPrompt;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+</script>
+
+<!-- Firebase SDK (modular) -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, limit, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
+import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+
+// =============================================
+// FIREBASE AYARLARI — BURAYA KENDİ BİLGİLERİNİ YAZ
+// =============================================
+const firebaseConfig = {
+  apiKey: "AIzaSyAo05FVshjQ_0n-dqeEm-Wo1zR1DCDXNzQ",
+  authDomain: "netuttu-b4745.firebaseapp.com",
+  projectId: "netuttu-b4745",
+  storageBucket: "netuttu-b4745.firebasestorage.app",
+  messagingSenderId: "994805794595",
+  appId: "1:994805794595:web:6603ce277411db995d2e96"
+};
+
+// Firebase'i başlat
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const auth = getAuth(app);
+
+// Anonim giriş (kullanıcı hesap açmadan kullanabilsin)
+signInAnonymously(auth).catch(function(err) {
+  console.log('Auth error:', err);
+});
+
+onAuthStateChanged(auth, function(user) {
+  if (user) {
+    console.log('Kullanıcı ID:', user.uid);
+    window.currentUserId = user.uid;
+  }
+});
+
+// ===== FİŞ YÜKLEME FONKSİYONU =====
+window.uploadReceipt = async function(file, data) {
+  try {
+    if (!window.currentUserId) {
+      alert('Lütfen bekleyin, bağlantı kuruluyor...');
+      return null;
+    }
+
+    // 1. Fotoğrafı Storage'a yükle
+    var fileName = Date.now() + '_' + file.name;
+    var storageRef = ref(storage, 'receipts/' + window.currentUserId + '/' + fileName);
+    var snapshot = await uploadBytes(storageRef, file);
+    var photoURL = await getDownloadURL(snapshot.ref);
+
+    // 2. Fiş verisini Firestore'a kaydet
+    var receiptData = {
+      userId: window.currentUserId,
+      photoURL: photoURL,
+      storeName: data.storeName || '',
+      category: data.category || '',
+      district: data.district || '',
+      city: data.city || '',
+      items: data.items || [],
+      totalPrice: data.totalPrice || 0,
+      note: data.note || '',
+      createdAt: serverTimestamp(),
+      verified: false,
+      likes: 0
+    };
+
+    var docRef = await addDoc(collection(db, 'receipts'), receiptData);
+    console.log('Fiş kaydedildi, ID:', docRef.id);
+    alert('Fişiniz başarıyla paylaşıldı!');
+    return docRef.id;
+
+  } catch (error) {
+    console.error('Yükleme hatası:', error);
+    alert('Yükleme sırasında bir hata oluştu. Tekrar deneyin.');
+    return null;
+  }
+};
+
+// ===== FİŞLERİ ÇEKME FONKSİYONU =====
+window.getReceipts = async function(category, cityName, limitCount) {
+  try {
+    var q;
+    var receiptsRef = collection(db, 'receipts');
+
+    if (category && cityName) {
+      q = query(receiptsRef, where('category', '==', category), where('city', '==', cityName), orderBy('createdAt', 'desc'), limit(limitCount || 20));
+    } else if (category) {
+      q = query(receiptsRef, where('category', '==', category), orderBy('createdAt', 'desc'), limit(limitCount || 20));
+    } else {
+      q = query(receiptsRef, orderBy('createdAt', 'desc'), limit(limitCount || 20));
+    }
+
+    var snapshot = await getDocs(q);
+    var receipts = [];
+    snapshot.forEach(function(doc) {
+      receipts.push({ id: doc.id, ...doc.data() });
+    });
+    return receipts;
+
+  } catch (error) {
+    console.error('Veri çekme hatası:', error);
+    return [];
+  }
+};
+
+// ===== KULLANICININ FİŞLERİ =====
+window.getMyReceipts = async function() {
+  if (!window.currentUserId) return [];
+  try {
+    var q = query(
+      collection(db, 'receipts'),
+      where('userId', '==', window.currentUserId),
+      orderBy('createdAt', 'desc')
+    );
+    var snapshot = await getDocs(q);
+    var receipts = [];
+    snapshot.forEach(function(doc) {
+      receipts.push({ id: doc.id, ...doc.data() });
+    });
+    return receipts;
+  } catch (error) {
+    console.error('Hata:', error);
+    return [];
+  }
+};
+
+console.log('Firebase hazır!');
+</script>
+</body>
+</html>
